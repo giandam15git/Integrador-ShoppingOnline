@@ -225,6 +225,7 @@
     <Compile Include="3_DataAccess\Connection.cs" />
     <Compile Include="3_DataAccess\DADepartament.cs" />
     <Compile Include="3_DataAccess\DAFamily.cs" />
+    <Compile Include="3_DataAccess\DAPayment.cs" />
     <Compile Include="3_DataAccess\DASale.cs" />
     <Compile Include="3_DataAccess\DAProduct.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

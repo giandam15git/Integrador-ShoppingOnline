@@ -25,24 +25,15 @@ namespace Shopping.Online._3_DataAccess
             return lines;
         }
 
-        public void InsertLineSale(LineSale pLineSale, int pProductId, int pSaleId)
+        public bool InsertLineSale(List<LineSale> listLineSale, int pProductId, int pSaleId)
         {
-            string strSQL = "INSERT INTO [dbo].[LineSale] ([LineSaleProductQuantity],[LineSaleProductPrice],[ProductId],[SaleId]) VALUES('" + pLineSale.LineSaleProductQuantity +
-                "', '" + pLineSale.LineSaleProductPrice + "' , '" + pProductId + "', '" + pSaleId + "')";
-            ExecuteQuerySQL(strSQL);
-        }
-
-        public void UpdateDepartament(Departament pDepartament)
-        {
-            string strSQL = "UPDATE Departament SET [DepartamentName] = '" + pDepartament.DepartamentName + "',[DepartamentIsTypeShoes] = '" + pDepartament.DepartamentIsTypeShoes + "'" +
-                "WHERE DeparamentId = '" + pDepartament.DepartamentId + "'";
-            ExecuteQuerySQL(strSQL);
-        }
-
-        public void DeleteDepartament(int pDepartamentId)
-        {
-            string strSQL = "UPDATE Departament SET [DepartamentIsDeleted] = 1 WHERE DeparamentId = '" + pDepartamentId + "'";
-            ExecuteQuerySQL(strSQL);
+            foreach (LineSale oneLS in listLineSale)
+            {
+                string strSQL = "INSERT INTO [dbo].[LineSale] ([LineSaleProductQuantity],[LineSaleProductPrice],[ProductId],[SaleId]) VALUES('" + oneLS.LineSaleProductQuantity +
+                "', '" + oneLS.LineSaleProductPrice + "' , '" + pProductId + "', '" + pSaleId + "')";
+                ExecuteQuerySQL(strSQL);
+            }
+            return true;
         }
     }
 }

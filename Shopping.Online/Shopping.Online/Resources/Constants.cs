@@ -7,11 +7,21 @@ namespace Shopping.Online.Resources
 {
     public static class Constants
     {
-        public class ClientTypes
+        public class TypesPayments
         {
-            public const string Admin = "IsAdmin";
-            public const string ClientUnregistred = "ClientU";
-            public const string ClientRegistred = "ClientR";
+            public class CardsCompanies
+            {
+                public const string Visa = "Visa";
+                public const string MasterCard = "MasterCard";
+                public const string AmericanExpress = "AmericanExpress";
+            }
+            public class Transfers
+            {
+                public const string Santander = "Santander";
+                public const string BBVA = "BBVA";
+                public const string ITAU = "ITAU";
+                public const string BROU = "BROU";
+            }
         }
     }
 }

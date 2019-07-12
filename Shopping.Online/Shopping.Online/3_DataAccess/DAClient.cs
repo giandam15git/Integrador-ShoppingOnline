@@ -9,15 +9,13 @@ namespace Shopping.Online._3_DataAccess
 {
     public class DAClient : Connection
     {
-        public bool RegistrerClient(Client client)
+        public void InsertClient(Client pClient)
         {
-            return true;
+            string strSQL = "INSERT INTO dbo.Client([ClientName],[ClientEmail],[ClientCI],[ClientPhoneNumber],[ClientDepartament],[ClientCity],[ClientStreetName],[ClientAddressBill],[ClientToHome])" +
+                " VALUES('" + pClient.ClientName + "','" + pClient.ClientEmail + "','" + pClient.ClientCI + 
+                "','" + pClient.ClientPhoneNumber + "','" + pClient.ClientDepartament + "','" + pClient.ClientCity +
+                "','" + pClient.ClientStreetName + "','" + pClient.ClientAddressBill + "','" + pClient.ClientToHome + "')";
+            ExecuteQuerySQL(strSQL);
         }
-
-        public string CheckClient(string mail)
-        {
-            return ClientTypes.Admin;
-        }
-      
     }
 }

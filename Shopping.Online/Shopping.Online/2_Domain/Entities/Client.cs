@@ -7,7 +7,7 @@ namespace Shopping.Online._2_Domain.Entities
 {
     public class Client
     {
-        private string clientId;
+        private int clientId;
         private string clientName;
         private string clientEmail;
         private string clientCI;
@@ -16,9 +16,9 @@ namespace Shopping.Online._2_Domain.Entities
         private string clientCity;
         private string clientStreetName;
         private string clientAddressBill;
-        private bool   clientToHome;
+        private bool clientToHome;
 
-        public string ClientId { get => clientId; set => clientId = value; }
+        public int ClientId { get => clientId; set => clientId = value; }
         public string ClientName { get => clientName; set => clientName = value; }
         public string ClientEmail { get => clientEmail; set => clientEmail = value; }
         public string ClientCI { get => clientCI; set => clientCI = value; }
@@ -29,7 +29,7 @@ namespace Shopping.Online._2_Domain.Entities
         public string ClientAddressBill { get => clientAddressBill; set => clientAddressBill = value; }
         public bool ClientToHome { get => clientToHome; set => clientToHome = value; }
 
-        public Client(string clientId, string clientName, string clientEmail, string clientCI, string clientPhoneNumber, string clientDepartament, string clientCity, string clientStreetName, string clientAddressBill, bool clientToHome)
+        public Client(int clientId, string clientName, string clientEmail, string clientCI, string clientPhoneNumber, string clientDepartament, string clientCity, string clientStreetName, string clientAddressBill, bool clientToHome)
         {
             this.clientId = clientId;
             this.clientName = clientName;

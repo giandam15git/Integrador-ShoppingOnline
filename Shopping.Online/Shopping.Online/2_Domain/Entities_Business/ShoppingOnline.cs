@@ -14,11 +14,12 @@ namespace Shopping.Online._2_Domain.Entities_Business
         private _3_DataAccess.DASale DA_Sale = new _3_DataAccess.DASale();
         private _3_DataAccess.DALineSale DA_LineSale = new _3_DataAccess.DALineSale();
         private _3_DataAccess.DAProduct DA_Product = new _3_DataAccess.DAProduct();
+        private _3_DataAccess.DAPayment DA_Payment = new _3_DataAccess.DAPayment();
 
         #region Client
         public void RegistrerClient(Client client)
         {
-            DA_Client.RegistrerClient(client);
+            DA_Client.InsertClient(client);
         }
         #endregion
 
@@ -79,14 +80,41 @@ namespace Shopping.Online._2_Domain.Entities_Business
         #endregion
 
         #region Sale
-
-
+        public int InsertSale(Sale pSale, int pClientId)
+        {
+            return DA_Sale.InsertSale(pSale, pClientId);
+        }
         #endregion
 
         #region LineSale
 
-        public void InsertLineSale(LineSale pLineSale, int pProductId, int pSaleId)
-        { }
+        public bool InsertLineSale(List<LineSale> listLineSale, int pProductId, int pSaleId)
+        {
+            return DA_LineSale.InsertLineSale(listLineSale, pProductId, pSaleId);
+        }
+
+        #endregion
+
+        #region Payment
+        public bool Payment(bool isCard, string namePayment, Sale pSale, int pClientId, List<LineSale> listLineSale, int pProductId, int pSaleId)
+        {
+            if (isCard)
+            {
+                if (DA_Payment.PaymentCard(namePayment))
+                {
+                    return this.InsertLineSale(listLineSale, pProductId, this.InsertSale(pSale, pClientId));
+                }
+                return false;
+            }
+            else
+            {
+                if (DA_Payment.PaymentTransfer(namePayment))
+                {
+                    return this.InsertLineSale(listLineSale, pProductId, this.InsertSale(pSale, pClientId));
+                }
+                return false;
+            }
+        }
 
         #endregion
     }
