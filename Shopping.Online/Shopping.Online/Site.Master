@@ -52,9 +52,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/1_Presentation/frmABMProductFamilyDepartament" onserverclick="IsformProducts_ServerClick" >Mantenimiento de Productos</a></li>
-                        <li><a runat="server" href="~/1_Presentation/frmABMProductFamilyDepartament" onserverclick="IsformFamilies_ServerClick" >Mantenimiento de Familias</a></li>
-                        <li><a runat="server" href="~/1_Presentation/frmABMProductFamilyDepartament" onserverclick="IsformDepartaments_ServerClick" >Mantenimiento de Departaments</a></li>
+                        <li><a runat="server" href="~/1_Presentation/frmGenericABM" onserverclick="IsformProducts_ServerClick" >Mantenimiento de Productos</a></li>
+                        <li><a runat="server" href="~/1_Presentation/frmGenericABM" onserverclick="IsformFamilies_ServerClick" >Mantenimiento de Familias</a></li>
+                        <li><a runat="server" href="~/1_Presentation/frmGenericABM" onserverclick="IsformDepartaments_ServerClick" >Mantenimiento de Departaments</a></li>
                         <li><a runat="server" id="CartId" href="~/Presentacion/wfrmCart">
                             <span id="CartNumber" class="CartNumberStyle"></span>
                             <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -67,12 +67,6 @@
         </div>
         <div class="container">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <asp:ContentPlaceHolder ID="ContentProduct" runat="server">
-            </asp:ContentPlaceHolder>
-            <asp:ContentPlaceHolder ID="ContentFamily" runat="server">
-            </asp:ContentPlaceHolder>
-            <asp:ContentPlaceHolder ID="ContentDepartament" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>

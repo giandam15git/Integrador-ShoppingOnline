@@ -17,19 +17,19 @@ namespace Shopping.Online
         {
             Session.Remove("IsformProducts");
             Session["IsformFamilies"] = true;
-            Response.Redirect("/1_Presentation/frmABMProductFamilyDepartament");
+            Response.Redirect("/1_Presentation/frmGenericABM");
         }
         protected void IsformDepartaments_ServerClick(object sender, EventArgs e)
         {
             Session.Remove("IsformProducts");
             Session["IsformFamilies"] = false;
-            Response.Redirect("/1_Presentation/frmABMProductFamilyDepartament");
+            Response.Redirect("/1_Presentation/frmGenericABM");
         }
 
         protected void IsformProducts_ServerClick(object sender, EventArgs e)
         {
             Session["IsformProducts"] = true;
-            Response.Redirect("/1_Presentation/frmABMProductFamilyDepartament");
+            Response.Redirect("/1_Presentation/frmGenericABM");
         }
     }
 }

@@ -12,7 +12,7 @@ using Shopping.Online.Resources;
 
 namespace Shopping.Online._1_Presentation
 {
-    public partial class frmABMProductFamilyDepartament : System.Web.UI.Page
+    public partial class frmGenericABM : System.Web.UI.Page
     {
         ShoppingOnline shoppingOnline = new ShoppingOnline();
         Product product = new Product();

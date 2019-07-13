@@ -37,6 +37,11 @@ namespace Shopping.Online._2_Domain.Entities_Business
             DA_Product.DeleteProduct(pProductCode);
         }
 
+        public List<Product> GetProducts()
+        {
+           return DA_Product.GetProducts();
+        }
+
         #endregion
 
         #region Departament

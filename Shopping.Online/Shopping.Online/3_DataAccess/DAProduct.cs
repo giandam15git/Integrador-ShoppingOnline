@@ -21,6 +21,8 @@ namespace Shopping.Online._3_DataAccess
                 foreach (DataRow Row in data.Tables[0].Rows)
                 {
                     Product oneProd = new Product();
+                    oneProd.ProductStockSize = new int[8];
+                    oneProd.ProductStockSizeShoes = new int[17];
                     oneProd.ProductId = Convert.ToInt32(Row.ItemArray[0].ToString());
                     oneProd.ProductCode = Row.ItemArray[1].ToString();
                     oneProd.ProductName = Row.ItemArray[2].ToString();

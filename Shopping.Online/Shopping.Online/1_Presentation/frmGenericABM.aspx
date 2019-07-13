@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmABMProductFamilyDepartament.aspx.cs" Inherits="Shopping.Online._1_Presentation.frmABMProductFamilyDepartament" %>
-<asp:Content ID="ContentProductId" ContentPlaceHolderID="ContentProduct" runat="server">
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmGenericABM.aspx.cs" Inherits="Shopping.Online._1_Presentation.frmGenericABM" %>
+<asp:Content ID="ContentProductId" ContentPlaceHolderID="MainContent" runat="server">
     <div runat="server" id="divTitleProduct">
         <h1>Gestión de productos</h1>
     </div>

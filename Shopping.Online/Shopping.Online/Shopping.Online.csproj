@@ -137,7 +137,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1_Presentation\frmABMProductFamilyDepartament.aspx" />
+    <Content Include="1_Presentation\frmGenericABM.aspx" />
     <Content Include="1_Presentation\frmProducts.aspx" />
     <Content Include="1_Presentation\frmWelcome.aspx" />
     <Content Include="About.aspx" />
@@ -191,12 +191,12 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_Presentation\frmABMProductFamilyDepartament.aspx.cs">
-      <DependentUpon>frmABMProductFamilyDepartament.aspx</DependentUpon>
+    <Compile Include="1_Presentation\frmGenericABM.aspx.cs">
+      <DependentUpon>frmGenericABM.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="1_Presentation\frmABMProductFamilyDepartament.aspx.designer.cs">
-      <DependentUpon>frmABMProductFamilyDepartament.aspx</DependentUpon>
+    <Compile Include="1_Presentation\frmGenericABM.aspx.designer.cs">
+      <DependentUpon>frmGenericABM.aspx</DependentUpon>
     </Compile>
     <Compile Include="1_Presentation\frmProducts.aspx.cs">
       <DependentUpon>frmProducts.aspx</DependentUpon>

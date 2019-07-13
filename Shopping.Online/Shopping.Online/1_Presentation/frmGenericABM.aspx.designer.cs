@@ -10,7 +10,7 @@
 namespace Shopping.Online._1_Presentation {
     
     
-    public partial class frmABMProductFamilyDepartament {
+    public partial class frmGenericABM {
         
         /// <summary>
         /// divTitleProduct control.
