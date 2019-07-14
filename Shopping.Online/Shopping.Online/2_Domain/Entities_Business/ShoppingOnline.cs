@@ -16,6 +16,21 @@ namespace Shopping.Online._2_Domain.Entities_Business
         private _3_DataAccess.DAProduct DA_Product = new _3_DataAccess.DAProduct();
         private _3_DataAccess.DAPayment DA_Payment = new _3_DataAccess.DAPayment();
 
+        public void DeleteLineSale(int lineId)
+        {
+            List<LineSale> listLS = new List<LineSale>();
+            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            foreach (LineSale oneLS in listLS)
+            {
+                if (oneLS.LineSaleId == lineId)
+                {
+                    listLS.Remove(oneLS);
+                    ViewState["ListLineSale"] = listLS;
+                    break;
+                }
+            }
+        }
+
         #region Client
         public void RegistrerClient(Client client)
         {
@@ -87,6 +102,7 @@ namespace Shopping.Online._2_Domain.Entities_Business
         #region Sale
         public int InsertSale(Sale pSale, int pClientId)
         {
+            pSale.SaleAmount = GetTotalAmount();
             return DA_Sale.InsertSale(pSale, pClientId);
         }
         #endregion
@@ -121,6 +137,20 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
         }
 
+        #endregion
+
+        #region Auxiliary Methods
+        public decimal GetTotalAmount()
+        {
+            decimal totalAmount = 0;
+            List<LineSale> listLS = new List<LineSale>();
+            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            foreach (LineSale oneLS in listLS)
+            {
+                totalAmount = totalAmount + (oneLS.LineSaleProductPrice * oneLS.LineSaleProductQuantity);
+            }
+            return totalAmount;
+        }
         #endregion
     }
 }

@@ -12,8 +12,8 @@ namespace Shopping.Online._3_DataAccess
         public int InsertSale(Sale pSale, int pClientId)
         {
             int saleId = -1;
-            string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[SaleDate],[ClientId]) VALUES('" + pSale.SaleAmount +
-                "', '" + DateTime.Today + "' , '" + pClientId + "')";
+            string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[SaleDate],[ClientId]) VALUES('" + pSale.SaleAmount + 
+                "', '" + DateTime.Today + "' , '" + pClientId + "') SELECT SCOPE_IDENTITY()";
             DataSet data = ExecuteWithResultSQL(strSQL);
             if (data.Tables[0].Rows.Count > 0)
             {

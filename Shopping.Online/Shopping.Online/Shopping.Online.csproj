@@ -139,6 +139,7 @@
   <ItemGroup>
     <Content Include="1_Presentation\frmGenericABM.aspx" />
     <Content Include="1_Presentation\frmProducts.aspx" />
+    <Content Include="1_Presentation\frmSale.aspx" />
     <Content Include="1_Presentation\frmWelcome.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="1_Presentation\frmProducts.aspx.designer.cs">
       <DependentUpon>frmProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="1_Presentation\frmSale.aspx.cs">
+      <DependentUpon>frmSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="1_Presentation\frmSale.aspx.designer.cs">
+      <DependentUpon>frmSale.aspx</DependentUpon>
     </Compile>
     <Compile Include="1_Presentation\frmWelcome.aspx.cs">
       <DependentUpon>frmWelcome.aspx</DependentUpon>
