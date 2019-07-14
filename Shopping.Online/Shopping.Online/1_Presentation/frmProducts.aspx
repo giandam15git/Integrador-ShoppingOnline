@@ -7,6 +7,9 @@
                         <div class="col-md-4 largo">
                             <h3><%#Eval("ProductName") %></h3>
                             <div class="container2">
+                                <div class="div-img">
+                                    <a href="#"><img class="img" src='data:image/jpg;base64,<%#Eval("ProductImage")%>'></a>
+                                </div>
                             </div>
                             <div class="product-desc">
                                 <p><%#Eval("ProductDescription") %></p>

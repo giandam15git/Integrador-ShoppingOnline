@@ -9,6 +9,7 @@ using Shopping.Online._2_Domain.Entities;
 using Shopping.Online._2_Domain.Entities_Business;
 using static Shopping.Online.Resources.Enumerate;
 using Shopping.Online.Resources;
+using System.IO;
 
 namespace Shopping.Online._1_Presentation
 {
@@ -151,6 +152,7 @@ namespace Shopping.Online._1_Presentation
             pProduct.ProductCode = this.txtProductCode.Text;
             pProduct.ProductName = this.txtGenericName.Text;
             pProduct.ProductDescription = this.txtProductDescription.Text;
+            pProduct.ProductImage = this.LoadImage();
             pProduct.ProductGenre = ddlProductGenre.SelectedItem.Text; //(uint)Enum.Parse(typeof(ProductGenres), "HKEY_LOCAL_MACHINE"); Extraer valor por string
             pProduct.ProductColor = this.txtProductColor.Text;
             pProduct.ProductStockSize = (int[])ViewState["productStockSize"];
@@ -242,7 +244,29 @@ namespace Shopping.Online._1_Presentation
             this.btnGenericInsert.Text = "Ingresar Producto";
             this.btnGenericUpdate.Text = "Modificar Producto";
         }
-        
+
+        public string LoadImage()
+        {
+            bool isTypeFile = false;
+            if (FileUpload1.HasFile)
+            {
+                string extensionOfFile = System.IO.Path.GetExtension(FileUpload1.FileName).ToLower();
+                string extension = ".jpg";
+                if (extensionOfFile == extension)
+                {
+                    isTypeFile = true;
+                }
+            }
+            if (isTypeFile)
+            {
+                return Convert.ToBase64String(FileUpload1.FileBytes);
+            }
+            else
+            {
+                lblMessageProduct.Text = "POr favor selecione una imagen con extension .jpg";
+            }
+            return "ERROR";
+        }
         #endregion
 
         protected void txtProductSizeStock_TextChanged(object sender, EventArgs e)

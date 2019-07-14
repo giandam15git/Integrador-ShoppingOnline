@@ -2,6 +2,7 @@
 using Shopping.Online._2_Domain.Entities_Business;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -54,7 +55,6 @@ namespace Shopping.Online._1_Presentation
             ddlProductSizeShoes.DataSource = Enum.GetValues(typeof(ProductSizeShoes));
             ddlProductSizeShoes.DataBind();
         }
-
         protected void rpProducts_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             bool isShoes = bool.Parse(DataBinder.Eval(e.Item.DataItem, "DepartamentIsTypeShoes").ToString());

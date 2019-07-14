@@ -126,4 +126,8 @@
         </div>
      </div>
     <br />
+    <div class="form-group"  runat="server" id="divLabelMessage">
+        <asp:Label runat="server" ID="lblMessageProduct" CssClass="col-md-2 control-label"></asp:Label>
+    </div>
+
 </asp:Content>

@@ -109,5 +109,6 @@ namespace Shopping.Online._3_DataAccess
             ExecuteQuerySQL(strSQL);
         }
 
+
     }
 }
