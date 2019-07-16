@@ -64,13 +64,23 @@ namespace Shopping.Online._1_Presentation
         protected void btnBuy_Click(object sender, EventArgs e)
         {
             Button btnBuy = (Button)sender;
-            int productId = Convert.ToInt32(btnBuy.CommandArgument);
+            string[] commandArgs = btnBuy.CommandArgument.ToString().Split(new char[] { ',' });
+            RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
+
+            int productId = Convert.ToInt32(commandArgs[0]);
+            decimal productPrice = Convert.ToInt32(commandArgs[1]);
+            int productQuantity = Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text);
+
             LineSale oneLS = new LineSale
             {
                 LineSaleId = -1,
-                LineSaleProductQuantity = Convert.ToInt32(this.)
+                LineSaleProductQuantity = productQuantity,
+                LineSaleProductPrice = productPrice,
+                ListLineSale = new List<LineSale>(),
+                LineSaleProductId = productId
             };
-            shoppingOnline.InsertLineSale();
+
+            shoppingOnline.InsertToKart(oneLS);
         }
         
     }

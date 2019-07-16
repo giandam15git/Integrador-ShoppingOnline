@@ -98,11 +98,11 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             return DA_LineSale.InsertLineSale(listLineSale, pProductId, pSaleId);
         }
-        public bool InsertToKart(List<LineSale> listLineSale, int pProductId, int pSaleId)
+        public bool InsertToKart(LineSale lineSale)
         {
-            
-            List<LineSale> listLS = new List<LineSale>();
-            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            return true;
+            //List<LineSale> listLS = new List<LineSale>();
+            //listLS = (List<LineSale>)ViewState["ListLineSale"];
         }
         
         public void DeleteLineSale(int lineId)

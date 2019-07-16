@@ -13,7 +13,7 @@
                             </div>
                             <div class="product-desc">
                                 <p><%#Eval("ProductDescription") %></p>
-                                <strong class="price">$<%#Eval("ProductPrice") %></strong>
+                                <strong class="price" >$<%#Eval("ProductPrice") %></strong>
                                 <div class="col-md-12">
                                     <div class="form-group" runat="server" id="divProductSize">
                                         <asp:Label runat="server" CssClass="col-md-2 control-label">Talle</asp:Label>
@@ -28,7 +28,7 @@
                                     </div>
                                     <br />
                                     <div class="col-md-3">
-                                        <asp:Button runat="server" ID="btnComprar" CssClass="btn btn-default" Text="Comprar" CommandArgument='<%#Eval("ProductId")%>' onclick="btnBuy_Click" />
+                                        <asp:Button runat="server" ID="btnComprar" CssClass="btn btn-default" Text="Comprar" CommandName="Buy" CommandArgument='<%#Eval("ProductId") + "," + Eval("ProductPrice") %>' onclick="btnBuy_Click" />
                                     </div>
                                 </div>
                                 <asp:Label runat="server" CssClass="text-danger"></asp:Label>

@@ -18,7 +18,7 @@ namespace Shopping.Online._2_Domain.Entities
         private bool clientToHome;
 
         public int ClientId { get => clientId; set => clientId = value; }
-        public string ClientFUllName { get => clientFullName; set => clientFullName = value; }
+        public string ClientFullName { get => clientFullName; set => clientFullName = value; }
         public string ClientEmail { get => clientEmail; set => clientEmail = value; }
         public string ClientCI { get => clientCI; set => clientCI = value; }
         public string ClientPhoneNumber { get => clientPhoneNumber; set => clientPhoneNumber = value; }

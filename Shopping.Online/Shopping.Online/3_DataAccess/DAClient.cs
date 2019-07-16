@@ -11,10 +11,10 @@ namespace Shopping.Online._3_DataAccess
     {
         public void InsertClient(Client pClient)
         {
-            string strSQL = "INSERT INTO dbo.Client([ClientName],[ClientEmail],[ClientCI],[ClientPhoneNumber],[ClientDepartament],[ClientCity],[ClientStreetName],[ClientAddressBill],[ClientToHome])" +
-                " VALUES('" + pClient.ClientName + "','" + pClient.ClientEmail + "','" + pClient.ClientCI + 
+            string strSQL = "INSERT INTO dbo.Client([ClientName],[ClientEmail],[ClientCI],[ClientPhoneNumber],[ClientDepartament],[ClientCity],[ClientAddressBill],[ClientToHome])" +
+                " VALUES('" + pClient.ClientFullName + "','" + pClient.ClientEmail + "','" + pClient.ClientCI + 
                 "','" + pClient.ClientPhoneNumber + "','" + pClient.ClientDepartament + "','" + pClient.ClientCity +
-                "','" + pClient.ClientStreetName + "','" + pClient.ClientAddressBill + "','" + pClient.ClientToHome + "')";
+                "','" + pClient.ClientAddressBill + "','" + pClient.ClientToHome + "')";
             ExecuteQuerySQL(strSQL);
         }
     }
