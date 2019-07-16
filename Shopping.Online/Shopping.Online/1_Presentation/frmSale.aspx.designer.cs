@@ -22,6 +22,123 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.Label lblTotalAmount;
         
         /// <summary>
+        /// txtClientFullName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientFullName;
+        
+        /// <summary>
+        /// txtClientEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientEmail;
+        
+        /// <summary>
+        /// txtClientCI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientCI;
+        
+        /// <summary>
+        /// txtClientPhoneNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientPhoneNumber;
+        
+        /// <summary>
+        /// txtClientDepartament control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientDepartament;
+        
+        /// <summary>
+        /// txtClientCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientCity;
+        
+        /// <summary>
+        /// txtClientAddressBill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClientAddressBill;
+        
+        /// <summary>
+        /// rdbClientToHomeY control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbClientToHomeY;
+        
+        /// <summary>
+        /// rdbClientToHomeN control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbClientToHomeN;
+        
+        /// <summary>
+        /// ddlSelectTypePayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelectTypePayment;
+        
+        /// <summary>
+        /// ddlSelectPayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSelectPayment;
+        
+        /// <summary>
+        /// lblTypePayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTypePayment;
+        
+        /// <summary>
+        /// txtNumberFromPayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumberFromPayment;
+        
+        /// <summary>
         /// btnPay control.
         /// </summary>
         /// <remarks>
@@ -31,15 +148,6 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.Button btnPay;
         
         /// <summary>
-        /// rpProductsSale control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpProductsSale;
-        
-        /// <summary>
         /// lblMensaje control.
         /// </summary>
         /// <remarks>
@@ -47,5 +155,14 @@ namespace Shopping.Online._1_Presentation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
+        
+        /// <summary>
+        /// rpProductsSale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpProductsSale;
     }
 }

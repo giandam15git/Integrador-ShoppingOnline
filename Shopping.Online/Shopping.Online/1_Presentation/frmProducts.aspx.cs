@@ -60,5 +60,18 @@ namespace Shopping.Online._1_Presentation
             bool isShoes = bool.Parse(DataBinder.Eval(e.Item.DataItem, "DepartamentIsTypeShoes").ToString());
             this.LoadSizeGeneric(isShoes, e);
         }
+
+        protected void btnBuy_Click(object sender, EventArgs e)
+        {
+            Button btnBuy = (Button)sender;
+            int productId = Convert.ToInt32(btnBuy.CommandArgument);
+            LineSale oneLS = new LineSale
+            {
+                LineSaleId = -1,
+                LineSaleProductQuantity = Convert.ToInt32(this.)
+            };
+            shoppingOnline.InsertLineSale();
+        }
+        
     }
 }

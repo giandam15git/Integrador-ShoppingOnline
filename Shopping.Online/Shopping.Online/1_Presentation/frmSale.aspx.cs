@@ -11,15 +11,40 @@ namespace Shopping.Online._1_Presentation
     public partial class frmSale : System.Web.UI.Page
     {
         ShoppingOnline shoppingOnline = new ShoppingOnline();
+        private string[] typesPayment = { "Tarjeta de Crédito", "Transferencia Bancaria" };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                this.lblTotalAmount.Text = "Precio Total: UYU " + shoppingOnline.GetTotalAmount().ToString();
+                if (ViewState.IsItemDirty("ListLineSale"))
+                {
+                    this.LoadProductsLineSale();
+                    this.LoadTypePayments();
+                    //this.ClientExist(); ToDO
+                    this.lblTotalAmount.Text = "Precio Total: UYU " + shoppingOnline.GetTotalAmount().ToString();
+                }
+                else
+                {
+                    this.rpProductsSale.Visible = false;
+                }
             }
         }
 
-        protected void btnBorrar_Click(object sender, EventArgs e)
+        private void LoadTypePayments()
+        {
+            this.ddlSelectTypePayment.DataSource = null;
+            this.ddlSelectTypePayment.DataSource = typesPayment;
+            this.ddlSelectTypePayment.DataBind();
+        }
+
+        private void LoadProductsLineSale()
+        {
+            this.rpProductsSale.DataSource = null;
+            this.rpProductsSale.DataSource = shoppingOnline.GetProductsLineSale();
+            this.rpProductsSale.DataBind();
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
         {
             Button btnDelete = (Button)sender;
             int LineId = Convert.ToInt32(btnDelete.CommandArgument);

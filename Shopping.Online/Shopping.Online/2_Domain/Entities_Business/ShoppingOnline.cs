@@ -16,21 +16,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
         private _3_DataAccess.DAProduct DA_Product = new _3_DataAccess.DAProduct();
         private _3_DataAccess.DAPayment DA_Payment = new _3_DataAccess.DAPayment();
 
-        public void DeleteLineSale(int lineId)
-        {
-            List<LineSale> listLS = new List<LineSale>();
-            listLS = (List<LineSale>)ViewState["ListLineSale"];
-            foreach (LineSale oneLS in listLS)
-            {
-                if (oneLS.LineSaleId == lineId)
-                {
-                    listLS.Remove(oneLS);
-                    ViewState["ListLineSale"] = listLS;
-                    break;
-                }
-            }
-        }
-
         #region Client
         public void RegistrerClient(Client client)
         {
@@ -113,6 +98,27 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             return DA_LineSale.InsertLineSale(listLineSale, pProductId, pSaleId);
         }
+        public bool InsertToKart(List<LineSale> listLineSale, int pProductId, int pSaleId)
+        {
+            
+            List<LineSale> listLS = new List<LineSale>();
+            listLS = (List<LineSale>)ViewState["ListLineSale"];
+        }
+        
+        public void DeleteLineSale(int lineId)
+        {
+            List<LineSale> listLS = new List<LineSale>();
+            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            foreach (LineSale oneLS in listLS)
+            {
+                if (oneLS.LineSaleId == lineId)
+                {
+                    listLS.Remove(oneLS);
+                    ViewState["ListLineSale"] = listLS;
+                    break;
+                }
+            }
+        }
 
         #endregion
 
@@ -151,6 +157,29 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
             return totalAmount;
         }
+        public List<Product> GetProductsLineSale()
+        {
+            List<LineSale> listLS = new List<LineSale>();
+            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            if (listLS.Count > 0)
+            {
+                int count = 0;
+                int[] productIds = new int[listLS.Count - 1];
+                foreach (LineSale oneLS in listLS)
+                {
+                    productIds[count] = oneLS.LineSaleProductId;
+                    count++;
+                }
+                string productIdsForSQL = string.Join("'", productIds);
+
+                return DA_Product.GetProductsLineSale(productIdsForSQL);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         #endregion
     }
 }

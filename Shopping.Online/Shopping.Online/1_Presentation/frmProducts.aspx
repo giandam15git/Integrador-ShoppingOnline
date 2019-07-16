@@ -22,8 +22,13 @@
                                             <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlProductSizeGeneric" validationgroup="insertGroup" InitialValue="-Talle-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un talle" />
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
+                                        <asp:Label runat="server">Cantidad</asp:Label>
                                         <asp:TextBox runat="server" ID="txtProductQuantity" CssClass="form-control quantity" TextMode="Number"></asp:TextBox>
+                                    </div>
+                                    <br />
+                                    <div class="col-md-3">
+                                        <asp:Button runat="server" ID="btnComprar" CssClass="btn btn-default" Text="Comprar" CommandArgument='<%#Eval("ProductId")%>' onclick="btnBuy_Click" />
                                     </div>
                                 </div>
                                 <asp:Label runat="server" CssClass="text-danger"></asp:Label>
