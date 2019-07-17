@@ -13,7 +13,7 @@ namespace Shopping.Online._3_DataAccess
         //public static string connectionString = "Server=(local);Database=Personas;User Id=sa;Password=123";
         //public static string connectionString = "Data Source=(local); integrated security=true; initial catalog=Personas";
 
-        public static string connectionString = @"Data Source=COL-GIANFRANCOD; Initial Catalog=ShoppingOnline;Integrated Security=True";
+        public static string connectionString = @"Data Source=DESKTOP-GRH1R1G; Initial Catalog=ShoppingOnline;Integrated Security=True";
         public static SqlConnection connection;
 
         public Connection() { }

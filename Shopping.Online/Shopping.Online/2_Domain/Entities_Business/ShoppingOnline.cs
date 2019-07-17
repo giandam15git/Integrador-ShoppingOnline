@@ -17,9 +17,13 @@ namespace Shopping.Online._2_Domain.Entities_Business
         private _3_DataAccess.DAPayment DA_Payment = new _3_DataAccess.DAPayment();
 
         #region Client
-        public void RegistrerClient(Client client)
+        public void InsertClient(Client pClient)
         {
-            DA_Client.InsertClient(client);
+            DA_Client.InsertClient(pClient);
+        }
+        private int GetClientId()
+        {
+            return Convert.ToInt32(Session["ClientId"]);
         }
         #endregion
 
@@ -36,12 +40,10 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Product.DeleteProduct(pProductCode);
         }
-
         public List<Product> GetProducts()
         {
            return DA_Product.GetProducts();
         }
-
         #endregion
 
         #region Departament
@@ -61,7 +63,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             return DA_Departament.GetDepartaments(isTypeShoes);
         }
-
         #endregion
 
         #region Family
@@ -81,22 +82,20 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             return DA_Family.GetFamilies(departamentId);
         }
-
         #endregion
 
         #region Sale
-        public int InsertSale(Sale pSale, int pClientId)
+        public int InsertSale(int pClientId)
         {
-            pSale.SaleAmount = GetTotalAmount();
-            return DA_Sale.InsertSale(pSale, pClientId);
+            decimal saleAmount = GetTotalAmount();
+            return DA_Sale.InsertSale(saleAmount, pClientId);
         }
         #endregion
 
         #region LineSale
-
-        public bool InsertLineSale(List<LineSale> listLineSale, int pProductId, int pSaleId)
+        public bool InsertLineSale(List<LineSale> listLineSale, int pSaleId)
         {
-            return DA_LineSale.InsertLineSale(listLineSale, pProductId, pSaleId);
+            return DA_LineSale.InsertLineSale(listLineSale, pSaleId);
         }
         public void InsertToKart(LineSale lineSale)
         {
@@ -108,7 +107,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
             listLS.Add(lineSale);
             Session["ListLineSale"] = listLS;
         }
-        
         public void DeleteLineSale(int productId)
         {
             List<LineSale> listLS = new List<LineSale>();
@@ -123,17 +121,25 @@ namespace Shopping.Online._2_Domain.Entities_Business
                 }
             }
         }
-
+        public List<LineSale> GetListLineSale()
+        {
+            List<LineSale> listLS = new List<LineSale>();
+            if (Session["ListLineSale"] != null)
+            {
+                listLS = (List<LineSale>)Session["ListLineSale"];
+            }
+            return listLS;
+        }
         #endregion
 
         #region Payment
-        public bool Payment(bool isCard, string namePayment, Sale pSale, int pClientId, List<LineSale> listLineSale, int pProductId, int pSaleId)
+        public bool Payment(bool isCreditCard, string namePayment, int pClientId, List<LineSale> listLineSale, int pSaleId)
         {
-            if (isCard)
+            if (isCreditCard)
             {
                 if (DA_Payment.PaymentCard(namePayment))
                 {
-                    return this.InsertLineSale(listLineSale, pProductId, this.InsertSale(pSale, pClientId));
+                    return this.InsertLineSale(listLineSale, pSaleId);
                 }
                 return false;
             }
@@ -141,13 +147,20 @@ namespace Shopping.Online._2_Domain.Entities_Business
             {
                 if (DA_Payment.PaymentTransfer(namePayment))
                 {
-                    return this.InsertLineSale(listLineSale, pProductId, this.InsertSale(pSale, pClientId));
+                    return this.InsertLineSale(listLineSale, pSaleId);
                 }
                 return false;
             }
         }
-
+        //Metodo Pago
+        public bool Pay(bool isCreditCard, string namePayment, List<LineSale> listLineSale)
+        {
+            int clientId = this.GetClientId();
+            int saleId = this.InsertSale(clientId);
+            this.Payment(isCreditCard, namePayment, clientId, listLineSale,this.GetListLineSale(), saleId);
+        }
         #endregion
+
 
         #region Auxiliary Methods
         public decimal GetTotalAmount()
@@ -185,7 +198,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
             return null;
         }
-
         #endregion
     }
 }

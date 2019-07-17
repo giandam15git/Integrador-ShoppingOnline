@@ -1,4 +1,5 @@
-﻿using Shopping.Online._2_Domain.Entities_Business;
+﻿using Shopping.Online._2_Domain.Entities;
+using Shopping.Online._2_Domain.Entities_Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Shopping.Online._1_Presentation
                 }
             }
         }
+
         #region LoadData
         private void LoadTypePayments()
         {
@@ -47,6 +49,25 @@ namespace Shopping.Online._1_Presentation
 
         #endregion
 
+        #region Client
+        private void InsertClient()
+        {
+            //Client oneCli = new Client
+            //{
+            //    ClientId = -1,
+            //    ClientFullName = this.txtClientFullName.Text,
+            //    ClientEmail = this.txtClientEmail.Text,
+            //    ClientCI = this.txtClientCI.Text,
+            //    ClientPhoneNumber = this.txtClientPhoneNumber.Text,
+            //    ClientDepartament = this.txtClientDepartament.Text,
+            //    ClientCity = this.txtClientCity.Text,
+            //    ClientAddressBill = this.txtClientAddressBill.Text,
+            //    ClientToHome = Convert.ToBoolean(this.rdbClientToHomeY.Checked)
+            //};
+            //this.shoppingOnline.InsertClient(oneCli);
+        }
+        #endregion
+
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             Button btnDelete = (Button)sender;
@@ -60,6 +81,21 @@ namespace Shopping.Online._1_Presentation
         protected void rpProductsSale_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             bool isShoes = bool.Parse(DataBinder.Eval(e.Item.DataItem, "DepartamentIsTypeShoes").ToString());
+        }
+
+        protected void btnPay_Click(object sender, EventArgs e)
+        {
+            //no funcionara asi
+            //Validar que haya compras desde FrontEnd
+            bool isCreditCard = Convert.ToBoolean(ddlSelectTypePayment.SelectedValue); 
+            string namePayment = ddlSelectTypePayment.SelectedItem.Text;
+
+            if (Session["ClientId"] != null)
+            {
+                this.InsertClient();
+            }
+
+            this.shoppingOnline.Pay(isCreditCard, namePayment);
         }
     }
 }

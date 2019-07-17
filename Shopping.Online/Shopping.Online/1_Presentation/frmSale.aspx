@@ -50,7 +50,7 @@
                 <asp:TextBox ID="txtNumberFromPayment" CssClass="col-md-10 form-control" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumberFromPayment" ValidationGroup="ingresoGrupo" CssClass="col-md-2 text-danger" ErrorMessage=" *" />
 
-                <asp:Button ID="btnPay" runat="server" CssClass="col-md-12 btn btn-default" Text="Confirmar Compra" />
+                <asp:Button ID="btnPay" runat="server" CssClass="col-md-12 btn btn-default" Text="Confirmar Compra" OnClick="btnPay_Click" />
             </div>
             <asp:Label runat="server" ID="lblMensaje"></asp:Label>
         </div>

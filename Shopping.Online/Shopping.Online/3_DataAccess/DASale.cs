@@ -9,7 +9,7 @@ namespace Shopping.Online._3_DataAccess
 {
     public class DASale : Connection
     {
-        public int InsertSale(Sale pSale, int pClientId)
+        public int InsertSale(decimal saleAmount, int pClientId)
         {
             int saleId = -1;
             string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[SaleDate],[ClientId]) VALUES('" + pSale.SaleAmount + 
@@ -19,7 +19,7 @@ namespace Shopping.Online._3_DataAccess
             {
                 saleId = Convert.ToInt32((data.Tables[0].Rows[0].ToString()));
             }
-            return saleId; //Si es menos uno es inválido.
+            return saleId; //Si es -1 es inválido.
         }
     }
 }

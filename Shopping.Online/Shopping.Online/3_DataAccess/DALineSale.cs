@@ -25,12 +25,12 @@ namespace Shopping.Online._3_DataAccess
             return lines;
         }
 
-        public bool InsertLineSale(List<LineSale> listLineSale, int pProductId, int pSaleId)
+        public bool InsertLineSale(List<LineSale> listLineSale, int pSaleId)
         {
             foreach (LineSale oneLS in listLineSale)
             {
                 string strSQL = "INSERT INTO [dbo].[LineSale] ([LineSaleProductQuantity],[LineSaleProductPrice],[ProductId],[SaleId]) VALUES('" + oneLS.LineSaleProductQuantity +
-                "', '" + oneLS.LineSaleProductPrice + "' , '" + pProductId + "', '" + pSaleId + "')";
+                "', '" + oneLS.LineSaleProductPrice + "' , '" + oneLS.LineSaleProductId + "', '" + pSaleId + "')";
                 ExecuteQuerySQL(strSQL);
             }
             return true;
