@@ -16,7 +16,7 @@ namespace Shopping.Online._1_Presentation
         {
             if (!IsPostBack)
             {
-                if (ViewState.IsItemDirty("ListLineSale"))
+                if (Session["ListLineSale"] != null)
                 {
                     this.LoadProductsLineSale();
                     this.LoadTypePayments();
@@ -25,11 +25,12 @@ namespace Shopping.Online._1_Presentation
                 }
                 else
                 {
+                    this.divConfirmSale.Visible = false;
                     this.rpProductsSale.Visible = false;
                 }
             }
         }
-
+        #region LoadData
         private void LoadTypePayments()
         {
             this.ddlSelectTypePayment.DataSource = null;
@@ -44,13 +45,18 @@ namespace Shopping.Online._1_Presentation
             this.rpProductsSale.DataBind();
         }
 
+        #endregion
+
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             Button btnDelete = (Button)sender;
-            int LineId = Convert.ToInt32(btnDelete.CommandArgument);
-            shoppingOnline.DeleteLineSale(LineId);
+            int ProductId = Convert.ToInt32(btnDelete.CommandArgument);
+            shoppingOnline.DeleteLineSale(ProductId);
         }
-
+        protected void rdbClientToHome_CheckedChanged(object sender, EventArgs e)
+        {
+            //nothing
+        }
         protected void rpProductsSale_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             bool isShoes = bool.Parse(DataBinder.Eval(e.Item.DataItem, "DepartamentIsTypeShoes").ToString());

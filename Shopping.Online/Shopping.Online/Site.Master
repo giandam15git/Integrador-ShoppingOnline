@@ -55,9 +55,9 @@
                         <li><a runat="server" href="~/1_Presentation/frmProducts">Productos</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" id="CartId" href="~/Presentacion/wfrmCart">
-                            <span id="CartNumber" class="CartNumberStyle"></span>
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <li><a runat="server" id="CartId" href="~/1_Presentation/frmSale">
+                            <span id="CartNumber" runat="server" class="CartNumberStyle">1</span>
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Mi Carrito
                             </a>
                         </li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>

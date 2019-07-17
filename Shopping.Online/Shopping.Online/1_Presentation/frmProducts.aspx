@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <asp:Label runat="server">Cantidad</asp:Label>
-                                        <asp:TextBox runat="server" ID="txtProductQuantity" CssClass="form-control quantity" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="txtProductQuantity" CssClass="form-control quantity" Text="0" TextMode="Number"></asp:TextBox>
                                     </div>
                                     <br />
                                     <div class="col-md-3">

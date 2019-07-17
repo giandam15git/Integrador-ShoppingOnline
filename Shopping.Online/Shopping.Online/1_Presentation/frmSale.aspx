@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmSale.aspx.cs" Inherits="Shopping.Online._1_Presentation.frmSale" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <div class="col-md-3 fixed" id="divConfirmSale">
+        <div class="col-md-3 fixed" runat="server" id="divConfirmSale">
             <asp:Label runat="server" ID="lblTotalAmount"></asp:Label>
             <div class="col-md-12">
                 <asp:Label runat="server" CssClass="control-label">Nombre Completo</asp:Label>
@@ -66,9 +66,8 @@
                             </div>
                             <div class="product-desc">
                                 <p><%#Eval("ProductDescription") %></p>
-                                <strong class="price">$<%#Eval("ProductPrice") %></strong>
-                                <div class="col-md-6">
-                                    <asp:Button runat="server" ID="btnDelete" CssClass="btn btn-default" Text="Borrar" CommandArgument='<%#Eval("LineId")%>' onclick="btnDelete_Click"/>
+                                <strong class="price">$<%#Eval("ProductPrice") %></strong><div class="col-md-6">
+                                    <asp:Button runat="server" ID="btnDelete" CssClass="btn btn-default" Text="Borrar" CommandArgument='<%#Eval("ProductId")%>' onclick="btnDelete_Click"/>
                                 </div>
                                 <asp:Label runat="server" CssClass="text-danger"></asp:Label>
                             </div>

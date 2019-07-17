@@ -82,6 +82,5 @@ namespace Shopping.Online._1_Presentation
 
             shoppingOnline.InsertToKart(oneLS);
         }
-        
     }
 }

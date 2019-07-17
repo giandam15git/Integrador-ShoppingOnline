@@ -69,7 +69,7 @@ namespace Shopping.Online._3_DataAccess
             List<Product> products = new List<Product>();
             string strSQL = "SELECT [ProductId],[ProductCode],[ProductName],[ProductDescription],[ProductImage],[ProductGenre],[ProductColor],[ProductPrice],P.[FamilyId]," +
                 "[XS],[S],[M],[L],[XL],[XXL],[XXXL],[EU34],[EU35],[EU36],[EU37],[EU38],[EU39],[EU40],[EU41],[EU42],[EU43],[EU44],[EU45],[EU46],[EU47],[EU48],[EU49],[FamilyName],F.[DepartamentId],[DepartamentName],[DepartamentIsTypeShoes]" +
-                "FROM Product P INNER JOIN StockBySize SBS ON P.StockBySizeId = SBS.StockBySizeId INNER JOIN Family F ON P.FamilyId = F.FamilyId INNER JOIN Departament D ON F.DepartamentId = D.DepartamentId WHERE ProductId IN '" + "('"+ productIdsForSQL + "')" + "'";
+                "FROM Product P INNER JOIN StockBySize SBS ON P.StockBySizeId = SBS.StockBySizeId INNER JOIN Family F ON P.FamilyId = F.FamilyId INNER JOIN Departament D ON F.DepartamentId = D.DepartamentId WHERE ProductId IN ('" + productIdsForSQL + "')" ;
             DataSet data = ExecuteWithResultSQL(strSQL);
             if (data.Tables[0].Rows.Count > 0)
             {

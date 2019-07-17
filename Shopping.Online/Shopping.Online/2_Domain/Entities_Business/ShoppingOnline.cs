@@ -98,23 +98,27 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             return DA_LineSale.InsertLineSale(listLineSale, pProductId, pSaleId);
         }
-        public bool InsertToKart(LineSale lineSale)
-        {
-            return true;
-            //List<LineSale> listLS = new List<LineSale>();
-            //listLS = (List<LineSale>)ViewState["ListLineSale"];
-        }
-        
-        public void DeleteLineSale(int lineId)
+        public void InsertToKart(LineSale lineSale)
         {
             List<LineSale> listLS = new List<LineSale>();
-            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            if (Session["ListLineSale"] != null)
+            {
+                listLS = (List<LineSale>)Session["ListLineSale"];
+            }
+            listLS.Add(lineSale);
+            Session["ListLineSale"] = listLS;
+        }
+        
+        public void DeleteLineSale(int productId)
+        {
+            List<LineSale> listLS = new List<LineSale>();
+            listLS = (List<LineSale>)Session["ListLineSale"];
             foreach (LineSale oneLS in listLS)
             {
-                if (oneLS.LineSaleId == lineId)
+                if (oneLS.LineSaleProductId == productId)
                 {
                     listLS.Remove(oneLS);
-                    ViewState["ListLineSale"] = listLS;
+                    Session["ListLineSale"] = listLS;
                     break;
                 }
             }
@@ -150,7 +154,7 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             decimal totalAmount = 0;
             List<LineSale> listLS = new List<LineSale>();
-            listLS = (List<LineSale>)ViewState["ListLineSale"];
+            listLS = (List<LineSale>)Session["ListLineSale"];
             foreach (LineSale oneLS in listLS)
             {
                 totalAmount = totalAmount + (oneLS.LineSaleProductPrice * oneLS.LineSaleProductQuantity);
@@ -159,25 +163,27 @@ namespace Shopping.Online._2_Domain.Entities_Business
         }
         public List<Product> GetProductsLineSale()
         {
-            List<LineSale> listLS = new List<LineSale>();
-            listLS = (List<LineSale>)ViewState["ListLineSale"];
-            if (listLS.Count > 0)
+            if (Session["ListLineSale"] != null)
             {
-                int count = 0;
-                int[] productIds = new int[listLS.Count - 1];
-                foreach (LineSale oneLS in listLS)
-                {
-                    productIds[count] = oneLS.LineSaleProductId;
-                    count++;
-                }
-                string productIdsForSQL = string.Join("'", productIds);
+                List<LineSale> listLS = new List<LineSale>();
+                listLS = (List<LineSale>)Session["ListLineSale"];
 
-                return DA_Product.GetProductsLineSale(productIdsForSQL);
-            }
-            else
-            {
+                if (listLS.Count > 0)
+                {
+                    int count = 0;
+                    int[] productIds = new int[listLS.Count];
+                    foreach (LineSale oneLS in listLS)
+                    {
+                        productIds[count] = oneLS.LineSaleProductId;
+                        count++;
+                    }
+                    string productIdsForSQL = string.Join("','", productIds);
+
+                    return DA_Product.GetProductsLineSale(productIdsForSQL);
+                }
                 return null;
             }
+            return null;
         }
 
         #endregion
