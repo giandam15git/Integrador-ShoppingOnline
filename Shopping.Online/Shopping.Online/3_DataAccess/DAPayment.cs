@@ -10,7 +10,7 @@ namespace Shopping.Online._3_DataAccess
 {
     public class DAPayment
     {
-        public bool PaymentCard(string cardCompany)
+        public bool PaymentCard(string cardCompany, string numberFromPayment /*Para enviar al supuesto servicio*/)
         {
             Random rand = new Random();
             if (cardCompany == CardsCompanies.AmericanExpress)
@@ -31,7 +31,7 @@ namespace Shopping.Online._3_DataAccess
             }
         }
 
-        public bool PaymentTransfer(string bank)
+        public bool PaymentTransfer(string bank, string numberFromPayment)
         {
             Random rand = new Random();
             if (bank == Transfers.Santander)

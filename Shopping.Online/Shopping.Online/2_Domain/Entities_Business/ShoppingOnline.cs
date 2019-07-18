@@ -133,11 +133,11 @@ namespace Shopping.Online._2_Domain.Entities_Business
         #endregion
 
         #region Payment
-        public bool Payment(bool isCreditCard, string namePayment, int pClientId, List<LineSale> listLineSale, int pSaleId)
+        public bool Payment(bool isCreditCard, string namePayment, string numberFromPayment, int pClientId, List<LineSale> listLineSale, int pSaleId)
         {
             if (isCreditCard)
             {
-                if (DA_Payment.PaymentCard(namePayment))
+                if (DA_Payment.PaymentCard(namePayment, numberFromPayment))
                 {
                     return this.InsertLineSale(listLineSale, pSaleId);
                 }
@@ -145,7 +145,7 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
             else
             {
-                if (DA_Payment.PaymentTransfer(namePayment))
+                if (DA_Payment.PaymentTransfer(namePayment, numberFromPayment))
                 {
                     return this.InsertLineSale(listLineSale, pSaleId);
                 }
@@ -153,11 +153,11 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
         }
         //Metodo Pago
-        public bool Pay(bool isCreditCard, string namePayment)
+        public bool Pay(bool isCreditCard, string namePayment, string numberFromPayment)
         {
             int clientId = this.GetClientId();
             int saleId = this.InsertSale(clientId);
-            bool hasError = this.Payment(isCreditCard, namePayment, clientId, this.GetListLineSale(), saleId);
+            bool hasError = this.Payment(isCreditCard, namePayment, numberFromPayment, clientId, this.GetListLineSale(), saleId);
             return hasError;
         }
         #endregion

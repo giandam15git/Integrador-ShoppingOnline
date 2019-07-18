@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmSale.aspx.cs" Inherits="Shopping.Online._1_Presentation.frmSale" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
+        <div  runat="server" class="col-md-12" id="divNotProductsInKart" visible="false">
+            <h1>Lo sentimos, todavía no has agregado productos a tu carrito. :(</h1>
+        </div>
+        <div  runat="server" class="col-md-12" id="divHasError" visible="false">
+            <h1>Hubo un error al efectuar el pago, por favor, reintente. :)</h1>
+        </div>
+        <div  runat="server" class="col-md-12" id="divSuccess" visible="false">
+            <h1>El pago se ha efectuado correctamente. ♥</h1>
+        </div>
         <div class="col-md-6">
             <asp:Repeater ID="rpProductsSale" runat="server">
                     <ItemTemplate>
@@ -62,7 +71,7 @@
                 </div>
                 <div class="col-md-8">
                     <asp:Label runat="server" CssClass="control-label">Seleccione tipo de Pago</asp:Label>
-                    <asp:DropDownList ID="ddlSelectTypePayment" runat="server" AutoPostBack="true" CssClass="form-control" ></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSelectTypePayment" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSelectTypePayment_SelectedIndexChanged" CssClass="form-control" ></asp:DropDownList>
                     <asp:Label runat="server" CssClass="control-label">Seleccione medio de Pago</asp:Label>
                     <asp:DropDownList ID="ddlSelectPayment" runat="server" AutoPostBack="true" CssClass="form-control" ></asp:DropDownList>
                     <asp:Label runat="server" ID="Label1" CssClass="control-label">Ingrese número de pago</asp:Label>
