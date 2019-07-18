@@ -153,11 +153,12 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
         }
         //Metodo Pago
-        public bool Pay(bool isCreditCard, string namePayment, List<LineSale> listLineSale)
+        public bool Pay(bool isCreditCard, string namePayment)
         {
             int clientId = this.GetClientId();
             int saleId = this.InsertSale(clientId);
-            this.Payment(isCreditCard, namePayment, clientId, listLineSale,this.GetListLineSale(), saleId);
+            bool hasError = this.Payment(isCreditCard, namePayment, clientId, this.GetListLineSale(), saleId);
+            return hasError;
         }
         #endregion
 

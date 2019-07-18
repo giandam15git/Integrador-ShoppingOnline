@@ -87,7 +87,7 @@ namespace Shopping.Online._1_Presentation
         {
             //no funcionara asi
             //Validar que haya compras desde FrontEnd
-            bool isCreditCard = Convert.ToBoolean(ddlSelectTypePayment.SelectedValue); 
+            bool isCreditCard = Convert.ToBoolean(ddlSelectTypePayment.SelectedItem.Text); 
             string namePayment = ddlSelectTypePayment.SelectedItem.Text;
 
             if (Session["ClientId"] != null)

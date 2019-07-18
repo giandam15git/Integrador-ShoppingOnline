@@ -75,11 +75,21 @@ textarea {
 }
 
 .container2 {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
     top: 20px;
+    word-break: break-all;
+    word-wrap: break-word;
 }
+
+.containerKart {
+    width: 250px;
+    height: 210px;
+    top: 20px;
+    word-break: break-all;
+    word-wrap: break-word;
+} 
 
 .div-img {
     margin-left: auto;
@@ -102,9 +112,27 @@ textarea {
     }
 
     .div-img:hover .img {
-        transform: rotate(-10deg);
-        -webkit-transform: rotate(-10deg);
-        -moz-transform: rotate(-10deg);
-        -o-transform: rotate(-10deg);
-        -ms-transform: rotate(-10deg);
+        transform: rotate(-5deg);
+        -webkit-transform: rotate(-5deg);
+        -moz-transform: rotate(-5deg);
+        -o-transform: rotate(-5deg);
+        -ms-transform: rotate(-5deg);
     }
+.divProductsRight {
+    border-right: solid;
+    border-right-color: darkslategrey;
+    border-left: solid;
+    border-left-color: darkslategrey;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: aliceblue;
+    border-radius: 15px;
+    float: none !important;
+}
+
+.divFormLeft {
+    border: solid;
+    margin-top: 20px;
+    margin-left: 118px;
+    background-color: whitesmoke;
+}

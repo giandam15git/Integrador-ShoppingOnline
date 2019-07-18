@@ -13,6 +13,15 @@ namespace Shopping.Online._1_Presentation {
     public partial class frmSale {
         
         /// <summary>
+        /// rpProductsSale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpProductsSale;
+        
+        /// <summary>
         /// divConfirmSale control.
         /// </summary>
         /// <remarks>
@@ -20,15 +29,6 @@ namespace Shopping.Online._1_Presentation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divConfirmSale;
-        
-        /// <summary>
-        /// lblTotalAmount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalAmount;
         
         /// <summary>
         /// txtClientFullName control.
@@ -130,6 +130,24 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.DropDownList ddlSelectPayment;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        
+        /// <summary>
         /// lblTypePayment control.
         /// </summary>
         /// <remarks>
@@ -157,6 +175,15 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.Button btnPay;
         
         /// <summary>
+        /// lblTotalAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalAmount;
+        
+        /// <summary>
         /// lblMensaje control.
         /// </summary>
         /// <remarks>
@@ -164,14 +191,5 @@ namespace Shopping.Online._1_Presentation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
-        
-        /// <summary>
-        /// rpProductsSale control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpProductsSale;
     }
 }
