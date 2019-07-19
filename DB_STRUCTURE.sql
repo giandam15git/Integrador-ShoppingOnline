@@ -24,44 +24,24 @@ EU47 DECIMAL NOT NULL,
 EU48 DECIMAL NOT NULL,
 EU49 DECIMAL NOT NULL
 );
-CREATE TABLE Product(
-ProductId INT PRIMARY KEY IDENTITY(1,1),
-ProductCode INT,
-ProductName VARCHAR(50) NOT NULL,
-ProductDescription VARCHAR(50) NOT NULL,
-ProductImage NVARCHAR(MAX) NOT NULL,
-ProductGenre VARCHAR(15) NOT NULL,
-ProductColor NVARCHAR(50) NOT NULL,
-ProductPrice DECIMAL not null,
-ProductIsDeleted BIT NOT NULL,
-StockBySizeId INT NOT NULL FOREIGN KEY REFERENCES StockBySize(StockBySizeId),
-FamilyId INT NOT NULL FOREIGN KEY REFERENCES Family(FamilyId)
-);
 CREATE TABLE Client(
 ClientId INT PRIMARY KEY IDENTITY(1,1),
-ClientName VARCHAR(50) NOT NULL,
+ClientFullName VARCHAR(50) NOT NULL,
 ClientEmail VARCHAR(50) NOT NULL,
 ClientCI VARCHAR(20) NOT NULL,
 ClientPhoneNumber VARCHAR(20) NOT NULL,
+ClientDepartament VARCHAR(20) NOT NULL,
+ClientCity VARCHAR(20) NOT NULL,
 ClientAddressBill VARCHAR(50) NOT NULL,
-ClientAdminPassword VARCHAR(50) NOT NULL,
-ClientToHome BIT NOT NULL
+ClientToHome BIT NOT NULL,
+primary key(ClientEmail)
 );
 CREATE TABLE Sale(
 SaleId INT PRIMARY KEY IDENTITY(1,1),
 SaleAmount DECIMAL NOT NULL,
-SaleDate bit NOT NULL,
+SaleDate DATETIME DEFAULT GETDATE(),
 ClientId INT NOT NULL FOREIGN KEY REFERENCES Client(ClientId)
 );
-CREATE TABLE LineSale(
-LineSaleId INT NOT NULL IDENTITY(1,1),
-LineSaleProductQuantity INT NOT NULL,
-LineSaleProductPrice DECIMAL NOT NULL,
-ProductId INT FOREIGN KEY REFERENCES Product(ProductId),
-SaleId INT FOREIGN KEY REFERENCES Sale(SaleId),
-primary key(LineSaleId, ProductId, SaleId)
-);
-
 CREATE TABLE Departament(
 DepartamentId INT PRIMARY KEY IDENTITY(1,1),
 DepartamentName VARCHAR(20) NOT NULL,
@@ -73,4 +53,25 @@ FamilyId INT PRIMARY KEY IDENTITY(1,1),
 FamilyName VARCHAR(20) NOT NULL,
 FamilyIsDeleted BIT NOT NULL,
 DepartamentId INT NOT NULL FOREIGN KEY REFERENCES Departament(DepartamentId)
+);
+CREATE TABLE Product(
+ProductId INT PRIMARY KEY IDENTITY(1,1),
+ProductCode NVARCHAR(10) NOT NULL,
+ProductName VARCHAR(20) NOT NULL,
+ProductDescription VARCHAR(50) NOT NULL,
+ProductImage NVARCHAR(MAX) NOT NULL,
+ProductGenre VARCHAR(15) NOT NULL,
+ProductColor NVARCHAR(50) NOT NULL,
+ProductPrice DECIMAL NOT NULL,
+ProductIsDeleted BIT NOT NULL,
+StockBySizeId INT NOT NULL FOREIGN KEY REFERENCES StockBySize(StockBySizeId),
+FamilyId INT NOT NULL FOREIGN KEY REFERENCES Family(FamilyId)
+);
+CREATE TABLE LineSale(
+LineSaleId INT NOT NULL IDENTITY(1,1),
+LineSaleProductQuantity INT NOT NULL,
+LineSaleProductPrice DECIMAL NOT NULL,
+ProductId INT FOREIGN KEY REFERENCES Product(ProductId),
+SaleId INT FOREIGN KEY REFERENCES Sale(SaleId),
+primary key(LineSaleId, ProductId, SaleId)
 );

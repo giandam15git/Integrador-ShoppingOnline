@@ -21,9 +21,13 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Client.InsertClient(pClient);
         }
-        private int GetClientId()
+        public void SetClientIdSession(string clientEmail)
         {
-            return Convert.ToInt32(Session["ClientId"]);
+            int clientId = DA_Client.GetClientId(clientEmail);
+            if (clientId != -1)
+            {
+                Session["ClientId"] = clientId;
+            }
         }
         #endregion
 
@@ -36,6 +40,12 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Product.UpdateProduct(pProduct);
         }
+
+        public Client GetClient(int clientId)
+        {
+            return DA_Client.GetClient(clientId);
+        }
+
         public void DeleteProduct(int pProductCode)
         {
             DA_Product.DeleteProduct(pProductCode);
@@ -133,13 +143,14 @@ namespace Shopping.Online._2_Domain.Entities_Business
         #endregion
 
         #region Payment
-        public bool Payment(bool isCreditCard, string namePayment, string numberFromPayment, int pClientId, List<LineSale> listLineSale, int pSaleId)
+        public bool Payment(bool isCreditCard, string namePayment, string numberFromPayment, int clientId, List<LineSale> listLineSale)
         {
             if (isCreditCard)
             {
                 if (DA_Payment.PaymentCard(namePayment, numberFromPayment))
                 {
-                    return this.InsertLineSale(listLineSale, pSaleId);
+                    int saleId = this.InsertSale(clientId);
+                    return this.InsertLineSale(listLineSale, saleId);
                 }
                 return false;
             }
@@ -147,7 +158,8 @@ namespace Shopping.Online._2_Domain.Entities_Business
             {
                 if (DA_Payment.PaymentTransfer(namePayment, numberFromPayment))
                 {
-                    return this.InsertLineSale(listLineSale, pSaleId);
+                    int saleId = this.InsertSale(clientId);
+                    return this.InsertLineSale(listLineSale, saleId);
                 }
                 return false;
             }
@@ -155,10 +167,9 @@ namespace Shopping.Online._2_Domain.Entities_Business
         //Metodo Pago
         public bool Pay(bool isCreditCard, string namePayment, string numberFromPayment)
         {
-            int clientId = this.GetClientId();
-            int saleId = this.InsertSale(clientId);
-            bool hasError = this.Payment(isCreditCard, namePayment, numberFromPayment, clientId, this.GetListLineSale(), saleId);
-            return hasError;
+            int clientId = Convert.ToInt32(Session["ClientId"]);
+            bool isSuccess = this.Payment(isCreditCard, namePayment, numberFromPayment, clientId, this.GetListLineSale());
+            return isSuccess;
         }
         #endregion
 

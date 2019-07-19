@@ -35,31 +35,31 @@
         <div class="col-md-6" runat="server" id="divConfirmSale">
             <div class="col-md-10 divFormLeft">
                 <asp:Label runat="server" CssClass="control-label">Nombre Completo</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientFullName" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientFullName" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox runat="server" ID="txtClientFullName" CssClass="form-control" ></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Email</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientEmail" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientEmail" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox runat="server" ID="txtClientEmail" CssClass="form-control" TextMode="Email" ></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">CI</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientCI" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientCI" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox runat="server" ID="txtClientCI" CssClass="form-control" TextMode="Number" ></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Teléfono</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientPhoneNumber" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientPhoneNumber" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox ID="txtClientPhoneNumber" CssClass="form-control" TextMode="Number" runat="server"></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Departamento</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientDepartament" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientDepartament" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox ID="txtClientDepartament" CssClass="form-control" runat="server"></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Ciudad</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientCity" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientCity" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox ID="txtClientCity" CssClass="form-control" runat="server"></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Dirección de Factura</asp:Label>
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientAddressBill" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientAddressBill" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                 <asp:TextBox ID="txtClientAddressBill" CssClass="form-control" runat="server"></asp:TextBox>
                 <hr />
                 <div class="col-md-8">
@@ -74,13 +74,10 @@
                     <asp:DropDownList ID="ddlSelectTypePayment" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSelectTypePayment_SelectedIndexChanged" CssClass="form-control" ></asp:DropDownList>
                     <asp:Label runat="server" CssClass="control-label">Seleccione medio de Pago</asp:Label>
                     <asp:DropDownList ID="ddlSelectPayment" runat="server" AutoPostBack="true" CssClass="form-control" ></asp:DropDownList>
-                    <asp:Label runat="server" ID="Label1" CssClass="control-label">Ingrese número de pago</asp:Label>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumberFromPayment" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
-                    <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:Label runat="server" ID="lblTypePayment" CssClass="control-label">Ingrese número de pago</asp:Label>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumberFromPayment" ValidationGroup="ingresoGrupo" CssClass="text-danger" ErrorMessage=" *" />
+                    <asp:Label runat="server" CssClass="control-label">Ingrese número de pago</asp:Label>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumberFromPayment" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                     <asp:TextBox ID="txtNumberFromPayment" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnPay" runat="server"  CssClass="btn btn-default" Text="Confirmar Compra" OnClick="btnPay_Click" />
+                    <asp:Button ID="btnPay" runat="server" ValidationGroup="insertClient" CssClass="btn btn-default" Text="Confirmar Compra" OnClick="btnPay_Click" />
                 </div>
                 <div class="col-md-8">
                     <asp:Label runat="server" ID="lblTotalAmount"></asp:Label>

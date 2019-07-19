@@ -30,6 +30,7 @@ namespace Shopping.Online._1_Presentation
                     this.LoadGenre();
                     this.LoadSize();
                     this.LoadDepartament(false);
+                    this.LoadFamily();
                 }
                 else if (Convert.ToBoolean(Session["IsformFamilies"]))
                 {
@@ -70,7 +71,7 @@ namespace Shopping.Online._1_Presentation
             ddlGenericDepartament.DataTextField = "DepartamentName";
             ddlGenericDepartament.DataBind();
         }
-        private void LoadFamily(int departamentId = 0)
+        private void LoadFamily(int departamentId = -1)
         {
             ddlProductDepartamentFamily.DataSource = null;
             ddlProductDepartamentFamily.DataSource = shoppingOnline.GetFamilies(departamentId);
@@ -85,7 +86,6 @@ namespace Shopping.Online._1_Presentation
         {
 
         }
-
         protected void ddlProductSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = this.ddlProductSize.SelectedIndex;
@@ -103,13 +103,11 @@ namespace Shopping.Online._1_Presentation
                 }
             }
         }
-
         protected void ddlGenericDepartament_SelectedIndexChanged(object sender, EventArgs e)
         {
             int departamentId = Convert.ToInt32(ddlGenericDepartament.SelectedItem.Value);
             this.LoadFamily(departamentId);
         }
-
         protected void ddlProductDepartamentFamily_SelectedIndexChanged(object sender, EventArgs e)
         {
             Convert.ToInt32(ddlProductDepartamentFamily.SelectedItem.Value);
@@ -132,16 +130,42 @@ namespace Shopping.Online._1_Presentation
             {
                 this.shoppingOnline.InsertDepartament(MappingDepartamentData());
             }
-
+            this.ResetContents();
         }
-
         protected void btnGenericUpdate_Click(object sender, EventArgs e)
         {
-            this.shoppingOnline.UpdateProduct(MappingProductData());
+            if (Convert.ToBoolean(Session["IsformProducts"]))
+            {
+                //De haber más colores, que ingrese el mismo código.
+                this.shoppingOnline.UpdateProduct(MappingProductData());
+            }
+            else if (Convert.ToBoolean(Session["IsformFamilies"]))
+            {
+                this.shoppingOnline.UpdateFamily(MappingFamilyData());
+            }
+            else
+            {
+                this.shoppingOnline.UpdateDepartament(MappingDepartamentData());
+            }
+            this.ResetContents();
         }
-        #endregion
-
-        #region Departament
+        protected void btnGenericDelete_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToBoolean(Session["IsformProducts"]))
+            {
+                //De haber más colores, que ingrese el mismo código.
+                this.shoppingOnline.DeleteProduct(Convert.ToInt32(this.txtGenericId.Text));
+            }
+            else if (Convert.ToBoolean(Session["IsformFamilies"]))
+            {
+                this.shoppingOnline.DeleteFamily(Convert.ToInt32(this.txtGenericId.Text));
+            }
+            else
+            {
+                this.shoppingOnline.DeleteDepartament(Convert.ToInt32(this.txtGenericId.Text));
+            }
+            this.ResetContents();
+        }
 
         #endregion
 
@@ -162,7 +186,6 @@ namespace Shopping.Online._1_Presentation
 
             return pProduct;
         }
-
         private Departament MappingDepartamentData()
         {
             Departament pDepartament = new Departament();
@@ -171,7 +194,6 @@ namespace Shopping.Online._1_Presentation
 
             return pDepartament;
         }
-
         private Family MappingFamilyData()
         {
             Family pFamily = new Family();
@@ -181,7 +203,6 @@ namespace Shopping.Online._1_Presentation
 
             return pFamily;
         }
-
         public void LoadContentFamily()
         {
             this.divTitleProduct.Visible = false;
@@ -202,7 +223,6 @@ namespace Shopping.Online._1_Presentation
             this.btnGenericInsert.Text = "Ingresar Familia";
             this.btnGenericUpdate.Text = "Modificar Familia";
         }
-
         public void LoadContentDepartament()
         {
             this.divTitleProduct.Visible = false;
@@ -223,7 +243,6 @@ namespace Shopping.Online._1_Presentation
             this.btnGenericInsert.Text = "Ingresar Departamento";
             this.btnGenericUpdate.Text = "Modificar Departamento";
         }
-
         public void LoadContentProduct()
         {
             this.divTitleProduct.Visible = true;
@@ -244,7 +263,6 @@ namespace Shopping.Online._1_Presentation
             this.btnGenericInsert.Text = "Ingresar Producto";
             this.btnGenericUpdate.Text = "Modificar Producto";
         }
-
         public string LoadImage()
         {
             bool isTypeFile = false;
@@ -266,6 +284,22 @@ namespace Shopping.Online._1_Presentation
                 lblMessageProduct.Text = "POr favor selecione una imagen con extension .jpg";
             }
             return "ERROR";
+        }
+        private void ResetContents()
+        {
+            this.txtGenericId.Text = "";
+            this.txtProductCode.Text = "";
+            this.txtGenericName.Text = "";
+            this.txtProductDescription.Text = "";
+            //this.ddlProductGenre.Text = "";
+            this.txtProductColor.Text = "";
+            this.rdbTypeShoesN.Checked = true;
+            //this.ddlGenericDepartament.Text = "";
+            //this.ddlProductDepartamentFamily.Text = "";
+            //this.ddlProductSize.Text = "";
+            this.txtProductSizeStock.Text = "0";
+            this.txtProductPrice.Text = "";
+
         }
         #endregion
 
@@ -291,12 +325,12 @@ namespace Shopping.Online._1_Presentation
         {
             if (ddlGenericDepartament.SelectedItem != null)
             {
-                int departamentId = Convert.ToInt32(ddlGenericDepartament.SelectedItem.Value);
                 //Si es de tipo shoes, se va a cargar otro talle para zapatos.
                 if (this.rdbTypeShoesY.Checked)
                 {
                     this.LoadDepartament(true);
                     this.LoadSizeShoes();
+                    int departamentId = Convert.ToInt32(ddlGenericDepartament.SelectedItem.Value);
                     this.LoadFamily(departamentId);
                     
                 }
@@ -304,6 +338,7 @@ namespace Shopping.Online._1_Presentation
                 {
                     this.LoadDepartament(false);
                     this.LoadSize();
+                    int departamentId = Convert.ToInt32(ddlGenericDepartament.SelectedItem.Value);
                     this.LoadFamily(departamentId);
                 }
             }

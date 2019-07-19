@@ -12,12 +12,12 @@ namespace Shopping.Online._3_DataAccess
         public int InsertSale(decimal saleAmount, int pClientId)
         {
             int saleId = -1;
-            string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[SaleDate],[ClientId]) VALUES('" + saleAmount + 
-                "', '" + DateTime.Today + "' , '" + pClientId + "') SELECT SCOPE_IDENTITY()";
+            string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[ClientId]) VALUES('" + saleAmount + 
+                "', '" + pClientId + "') SELECT SCOPE_IDENTITY()";
             DataSet data = ExecuteWithResultSQL(strSQL);
             if (data.Tables[0].Rows.Count > 0)
             {
-                saleId = Convert.ToInt32((data.Tables[0].Rows[0].ToString()));
+                saleId = Convert.ToInt32(data.Tables[0].Rows[0].ItemArray[0].ToString());
             }
             return saleId; //Si es -1 es inválido.
         }

@@ -12,7 +12,10 @@ namespace Shopping.Online._3_DataAccess
         public List<Family> GetFamilies(int departamentId)
         {
             List<Family> families = new List<Family>();
-            string strSQL = "SELECT * FROM Family WHERE FamilyIsDeleted = 0 AND DepartamentId = '" + departamentId + "'";
+            string queryByDept = "WHERE F.FamilyIsDeleted = 0 AND F.DepartamentId = '" + departamentId + "'";
+            string queryDefault = "INNER JOIN Departament D ON F.DepartamentId = D.DepartamentId WHERE D.DepartamentIsTypeShoes = 0 AND F.FamilyIsDeleted = 0";
+            string query = (departamentId == -1) ? queryDefault : queryByDept;
+            string strSQL = "SELECT [FamilyId], [FamilyName] FROM Family F " + query;
             DataSet data = ExecuteWithResultSQL(strSQL);
             if (data.Tables[0].Rows.Count > 0)
             {

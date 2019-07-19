@@ -122,6 +122,7 @@
         <div class="col-md-offset-2 col-md-10">
             <asp:Button ID="btnGenericInsert" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericInsert_Click" />
             <asp:Button ID="btnGenericUpdate" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericUpdate_Click" />
+            <asp:Button ID="btnGenericDelete" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericDelete_Click" />
             <br />
         </div>
      </div>

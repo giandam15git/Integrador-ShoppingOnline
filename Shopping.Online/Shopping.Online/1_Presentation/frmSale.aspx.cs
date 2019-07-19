@@ -22,7 +22,7 @@ namespace Shopping.Online._1_Presentation
                     this.LoadProductsLineSale();
                     this.LoadTypePayments();
                     this.LoadPayments(true);
-                    //this.ClientExist();
+                    this.ClientExist();
                     this.lblTotalAmount.Text = "Precio Total: UYU " + shoppingOnline.GetTotalAmount().ToString();
                 }
                 else
@@ -33,6 +33,26 @@ namespace Shopping.Online._1_Presentation
                     this.divConfirmSale.Visible = false;
                     this.rpProductsSale.Visible = false;
                 }
+            }
+        }
+
+        private void ClientExist()
+        {
+            if (Session["ClientId"] != null)
+            {
+                Client oneCli = this.shoppingOnline.GetClient(Convert.ToInt32(Session["ClientId"]));
+                this.txtClientFullName.Text = oneCli.ClientFullName;
+                this.txtClientEmail.Text = oneCli.ClientEmail;
+                this.txtClientCI.Text = oneCli.ClientCI;
+                this.txtClientPhoneNumber.Text = oneCli.ClientPhoneNumber;
+                this.txtClientDepartament.Text = oneCli.ClientDepartament;
+                this.txtClientCity.Text = oneCli.ClientCity;
+                this.txtClientFullName.ReadOnly = true;
+                this.txtClientEmail.ReadOnly = true;
+                this.txtClientCI.ReadOnly = true;
+                this.txtClientPhoneNumber.ReadOnly = true;
+                this.txtClientDepartament.ReadOnly = true;
+                this.txtClientCity.ReadOnly = true;
             }
         }
 
@@ -76,6 +96,7 @@ namespace Shopping.Online._1_Presentation
                 ClientToHome = Convert.ToBoolean(this.rdbClientToHomeY.Checked)
             };
             this.shoppingOnline.InsertClient(oneCli);
+            this.shoppingOnline.SetClientIdSession(oneCli.ClientEmail);
         }
         #endregion
 
@@ -89,9 +110,9 @@ namespace Shopping.Online._1_Presentation
         protected void btnPay_Click(object sender, EventArgs e)
         {
             //Validar que haya compras desde FrontEnd
-            bool isCreditCard = ddlSelectTypePayment.SelectedItem.Text == TypesPayments.TC;
-            string namePayment = ddlSelectPayment.SelectedItem.Text;
-            string numberFromPayment = txtNumberFromPayment.Text; 
+            bool isCreditCard = this.ddlSelectTypePayment.SelectedItem.Text == TypesPayments.TC;
+            string namePayment = this.ddlSelectPayment.SelectedItem.Text;
+            string numberFromPayment = this.txtNumberFromPayment.Text; 
 
             if (Session["ClientId"] == null)
             {
@@ -104,17 +125,17 @@ namespace Shopping.Online._1_Presentation
         #endregion
 
         #region Auxiliary Methods
-        private void transactionHasError(bool hasError)
+        private void transactionHasError(bool isSuccess)
         {
-            if (hasError)
-            {
-                this.divHasError.Visible = true;
-                this.divSuccess.Visible = false;
-            }
-            else
+            if (isSuccess)
             {
                 this.divHasError.Visible = false;
                 this.divSuccess.Visible = true;
+            }
+            else
+            {
+                this.divHasError.Visible = true;
+                this.divSuccess.Visible = false;
             }
         }
         #endregion
