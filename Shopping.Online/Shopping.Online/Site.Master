@@ -56,7 +56,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" id="CartId" href="~/1_Presentation/frmSale">
-                            <span id="CartNumber" runat="server" class="CartNumberStyle">1</span>
+                            <div id="CartNumber" runat="server" class="CartNumberStyle"></div>
                             <span class="glyphicon glyphicon-shopping-cart"></span> Mi Carrito
                             </a>
                         </li>

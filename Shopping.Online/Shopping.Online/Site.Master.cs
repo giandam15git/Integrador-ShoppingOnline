@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shopping.Online._2_Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,10 @@ namespace Shopping.Online
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["ListLineSale"] != null)
+            {
+                this.CartNumber.InnerText = ((List<LineSale>)Session["ListLineSale"]).Count.ToString();
+            }
         }
         protected void IsformFamilies_ServerClick(object sender, EventArgs e)
         {

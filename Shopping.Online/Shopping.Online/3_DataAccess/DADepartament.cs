@@ -61,7 +61,7 @@ namespace Shopping.Online._3_DataAccess
 
         public void DeleteDepartament(int pDepartamentId)
         {
-            string strSQL = "UPDATE Departament SET [DepartamentIsDeleted] = 1 WHERE DeparamentId = '" + pDepartamentId + "'";
+            string strSQL = "UPDATE Departament SET [DepartamentIsDeleted] = 1 WHERE DepartamentId = '" + pDepartamentId + "'";
             ExecuteQuerySQL(strSQL);
         }
     }

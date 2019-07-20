@@ -169,6 +169,11 @@ namespace Shopping.Online._1_Presentation
         }
         private void LoadSelectedProduct(int productId)
         {
+            if (Session["ListGenericSession"] == null)
+            {
+                Response.Redirect("frmGenericABM.aspx");
+            }
+
             List<Product> products = (List<Product>)Session["ListGenericSession"];
             foreach (Product oneP in products)
             {
@@ -187,10 +192,15 @@ namespace Shopping.Online._1_Presentation
         }
         private void LoadSelectedFamily(int familyId)
         {
+            if (Session["ListGenericSession"] == null)
+            {
+                Response.Redirect("frmGenericABM.aspx");
+            }
+
             List<Product> products = (List<Product>)Session["ListGenericSession"];
             foreach (Product oneP in products)
             {
-                if (oneP.ProductId == familyId)
+                if (oneP.FamilyId == familyId)
                 {
                     this.txtGenericId.Text = oneP.FamilyId.ToString();
                     this.txtGenericName.Text = oneP.FamilyName;
@@ -199,10 +209,15 @@ namespace Shopping.Online._1_Presentation
         }
         private void LoadSelectedDepartament(int departamentId)
         {
+            if (Session["ListGenericSession"] == null)
+            {
+                Response.Redirect("frmGenericABM.aspx");
+            }
+
             List<Product> products = (List<Product>)Session["ListGenericSession"];
             foreach (Product oneP in products)
             {
-                if (oneP.ProductId == departamentId)
+                if (oneP.DepartamentId == departamentId)
                 {
                     this.txtGenericId.Text = oneP.DepartamentId.ToString();
                     this.txtGenericName.Text = oneP.DepartamentName;

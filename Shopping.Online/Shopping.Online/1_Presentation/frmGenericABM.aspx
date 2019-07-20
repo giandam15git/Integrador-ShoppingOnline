@@ -63,12 +63,12 @@
 			<div  runat="server" id="divGenericSelectedDepartament">
 				<h4>Seleccione un Departamento</h4>
 				<asp:Label runat="server" CssClass="control-label">Departamento</asp:Label>
-
 				<asp:DropDownList ID="ddlGenericDepartament" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlGenericDepartament_SelectedIndexChanged"/>
 				<asp:RequiredFieldValidator runat="server" ControlToValidate="ddlGenericDepartament" validationgroup="insertGroup" InitialValue="-Departamento-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un Departamento." />
-
-			</div>
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlGenericDepartament" validationgroup="insertGroup" InitialValue="" CssClass="text-danger" ErrorMessage="Por favor, seleccione o ingrese un departamento." />
 			<hr />
+            </div>
+			
 			<!--- Se selecciona un familia para departamento seleccionado --->
 
 			<div  runat="server" id="divGenericSelectedFamiliy">
@@ -98,23 +98,22 @@
 				<asp:FileUpload ID="FileUpload1" runat="server" />
 				<asp:RequiredFieldValidator runat="server" CssClass="text-danger" validationgroup="insertGroup" ControlToValidate="FileUpload1" ErrorMessage="Por favor, ingrese una imagen"/>
 
-
+<hr />
 			</div>
-			<hr />
+			
 			<div   runat="server" id="divProductPrice">
 				<asp:Label runat="server" CssClass="control-label">Precio en UYU</asp:Label>
 
 				<asp:TextBox runat="server" ID="txtProductPrice" TextMode="Number" CssClass="form-control" ToolTip="Ingrese un stock para cada talle."/>
 				<asp:requiredfieldvalidator controltovalidate="txtProductPrice" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese el precio" runat="Server"/>
-
+<hr />
 			</div>
-			<hr />
+			
 			<div >
-				<div class="col-md-offset-2 col-md-6">
-					<asp:Button ID="btnGenericInsert" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericInsert_Click" />
-					<asp:Button ID="btnGenericUpdate" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericUpdate_Click" />
-					<asp:Button ID="btnGenericDelete" validationgroup="deleteGroup" runat="server" CssClass="btn btn-default" Text="Borrar" OnClick="btnGenericDelete_Click" />
-
+				<div class="col-md-10">
+					<asp:Button ID="btnGenericInsert" validationgroup="insertGroup" runat="server" BorderColor="Green" CssClass="btn btn-default" OnClick="btnGenericInsert_Click"  />
+					<asp:Button ID="btnGenericUpdate" validationgroup="insertGroup" runat="server" BorderColor="Orange" CssClass="btn btn-default" OnClick="btnGenericUpdate_Click" />
+					<asp:Button ID="btnGenericDelete" validationgroup="deleteGroup" runat="server" BorderColor="Red" CssClass="btn btn-default" Text="Borrar" OnClick="btnGenericDelete_Click" Width="101px" />
 				</div>
 			</div>
 			<div  runat="server" id="divLabelMessage">
