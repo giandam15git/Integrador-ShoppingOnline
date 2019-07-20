@@ -29,6 +29,10 @@ namespace Shopping.Online._2_Domain.Entities_Business
                 Session["ClientId"] = clientId;
             }
         }
+        public Client GetClient(int clientId)
+        {
+            return DA_Client.GetClient(clientId);
+        }
         #endregion
 
         #region Product
@@ -40,12 +44,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Product.UpdateProduct(pProduct);
         }
-
-        public Client GetClient(int clientId)
-        {
-            return DA_Client.GetClient(clientId);
-        }
-
         public void DeleteProduct(int pProductCode)
         {
             DA_Product.DeleteProduct(pProductCode);
@@ -209,6 +207,16 @@ namespace Shopping.Online._2_Domain.Entities_Business
                 return null;
             }
             return null;
+        }
+
+        public List<Family> GetFamilys()
+        {
+            return DA_Family.GetFamilies();
+        }
+
+        public List<Departament> GetDepartaments()
+        {
+            return DA_Departament.GetDepartaments();
         }
         #endregion
     }

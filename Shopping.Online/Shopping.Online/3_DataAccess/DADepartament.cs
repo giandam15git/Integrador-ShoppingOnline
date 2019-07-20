@@ -26,6 +26,24 @@ namespace Shopping.Online._3_DataAccess
             }
             return departaments;
         }
+        public List<Departament> GetDepartaments()
+        {
+            List<Departament> departaments = new List<Departament>();
+            string strSQL = "SELECT * FROM Departament WHERE DepartamentIsDeleted = 0";
+            DataSet data = ExecuteWithResultSQL(strSQL);
+            if (data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow Row in data.Tables[0].Rows)
+                {
+                    Departament oneDep = new Departament();
+                    oneDep.DepartamentId = Convert.ToInt32(Row.ItemArray[0].ToString());
+                    oneDep.DepartamentName = Row.ItemArray[1].ToString();
+                    departaments.Add(oneDep);
+                }
+            }
+            return departaments;
+        }
+
 
         public void InsertDepartament(Departament pDepartament)
         {

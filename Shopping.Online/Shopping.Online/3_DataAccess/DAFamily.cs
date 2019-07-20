@@ -30,6 +30,24 @@ namespace Shopping.Online._3_DataAccess
             return families;
         }
 
+        public List<Family> GetFamilies()
+        {
+            List<Family> families = new List<Family>();
+            string strSQL = "SELECT [FamilyId], [FamilyName] FROM Family WHERE FamilyIsDeleted = 0" ;
+            DataSet data = ExecuteWithResultSQL(strSQL);
+            if (data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow Row in data.Tables[0].Rows)
+                {
+                    Family oneFam = new Family();
+                    oneFam.FamilyId = Convert.ToInt32(Row.ItemArray[0].ToString());
+                    oneFam.FamilyName = Row.ItemArray[1].ToString();
+                    families.Add(oneFam);
+                }
+            }
+            return families;
+        }
+
         public void InsertFamily(Family pFamily)
         {
             string strSQL = "INSERT INTO dbo.Family([FamilyName],[FamilyIsDeleted],[DepartamentId])" +

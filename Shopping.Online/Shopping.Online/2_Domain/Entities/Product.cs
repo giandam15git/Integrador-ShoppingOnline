@@ -18,6 +18,7 @@ namespace Shopping.Online._2_Domain.Entities
         private int[] productStockSize; //está relacionado con enum ProductSizes (dese index 1 - x) 
         private int[] productStockSizeShoes; //está relacionado con enum ProductSizeShoes (dese index 1 - x) 
         private decimal productPrice;
+        private List<Product> listProducts;
 
 
         #region gets and sets
@@ -31,6 +32,7 @@ namespace Shopping.Online._2_Domain.Entities
         public int[] ProductStockSize { get => productStockSize; set => productStockSize = value; }
         public int[] ProductStockSizeShoes { get => productStockSizeShoes; set => productStockSizeShoes = value; }
         public decimal ProductPrice { get => productPrice; set => productPrice = value; }
+        public List<Product> ListProducts { get => listProducts; set => listProducts = value; }
         #endregion
 
         public Product(int productId, string productCode, string productName, string productDescription, string productImage, string productGenre, string productColor, int[] productStockSize, int[] productStockSizeShoes, decimal productPrice, int familyId, string familyName, int departamentId, string departamentName, bool departamentIsTypeShoes)
