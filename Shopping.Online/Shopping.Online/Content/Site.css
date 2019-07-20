@@ -136,3 +136,11 @@ textarea {
     margin-left: 118px;
     background-color: whitesmoke;
 }
+
+.cartNumberStyle {
+    position: absolute;
+    color: royalblue;
+    z-index: 1;
+    margin-left: 8px;
+    margin-top: 23px;
+}
