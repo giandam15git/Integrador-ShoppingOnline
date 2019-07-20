@@ -15,12 +15,19 @@ namespace Shopping.Online._2_Domain.Entities_Business
         private _3_DataAccess.DALineSale DA_LineSale = new _3_DataAccess.DALineSale();
         private _3_DataAccess.DAProduct DA_Product = new _3_DataAccess.DAProduct();
         private _3_DataAccess.DAPayment DA_Payment = new _3_DataAccess.DAPayment();
+        private _3_DataAccess.DAStatistics DA_Statistics = new _3_DataAccess.DAStatistics();
 
         #region Client
         public void InsertClient(Client pClient)
         {
             DA_Client.InsertClient(pClient);
         }
+
+        public List<Product> GetProductByDate(string dateFrom, string dateTo, bool soldIn)
+        {
+            return DA_Statistics.GetProductByDate(dateFrom, dateTo, soldIn);
+        }
+
         public void SetClientIdSession(string clientEmail)
         {
             int clientId = DA_Client.GetClientId(clientEmail);

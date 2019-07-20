@@ -140,6 +140,7 @@
     <Content Include="1_Presentation\frmGenericABM.aspx" />
     <Content Include="1_Presentation\frmProducts.aspx" />
     <Content Include="1_Presentation\frmSale.aspx" />
+    <Content Include="1_Presentation\frmStatistics.aspx" />
     <Content Include="1_Presentation\frmWelcome.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
@@ -213,6 +214,13 @@
     <Compile Include="1_Presentation\frmSale.aspx.designer.cs">
       <DependentUpon>frmSale.aspx</DependentUpon>
     </Compile>
+    <Compile Include="1_Presentation\frmStatistics.aspx.cs">
+      <DependentUpon>frmStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="1_Presentation\frmStatistics.aspx.designer.cs">
+      <DependentUpon>frmStatistics.aspx</DependentUpon>
+    </Compile>
     <Compile Include="1_Presentation\frmWelcome.aspx.cs">
       <DependentUpon>frmWelcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,6 +244,7 @@
     <Compile Include="3_DataAccess\DAPayment.cs" />
     <Compile Include="3_DataAccess\DASale.cs" />
     <Compile Include="3_DataAccess\DAProduct.cs" />
+    <Compile Include="3_DataAccess\DAStatistics.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
