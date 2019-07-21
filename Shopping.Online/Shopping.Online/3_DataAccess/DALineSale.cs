@@ -30,7 +30,7 @@ namespace Shopping.Online._3_DataAccess
         {
             foreach (LineSale oneLS in listLineSale)
             {
-                foreach (int size in oneLS.ProductStockSize)
+                /*foreach (int size in oneLS.ProductStockSize)
                 {
                     if(size)
                 }
@@ -39,7 +39,7 @@ namespace Shopping.Online._3_DataAccess
                 string strSQL = "INSERT INTO [dbo].[LineSale] ([LineSaleProductQuantity],[LineSaleProductPrice],[ProductId],[SaleId]) VALUES('" + oneLS.LineSaleProductQuantity +
                 "', '" + oneLS.LineSaleProductPrice + "' , '" + oneLS.LineSaleProductId + "', '" + pSaleId + "') UPDATE StockBySize SET '" + + "' = '" + +"' - '" + +"' " +
                 "WHERE StockBySizeId = '" + oneLS.LineSaleProductId + "'";
-                ExecuteQuerySQL(strSQL);
+                ExecuteQuerySQL(strSQL);*/
             }
             return true;
         }

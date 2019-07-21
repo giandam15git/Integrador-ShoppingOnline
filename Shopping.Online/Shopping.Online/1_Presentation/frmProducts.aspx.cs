@@ -76,7 +76,7 @@ namespace Shopping.Online._1_Presentation
                         decimal productPrice = Convert.ToInt32(commandArgs[1]);
                         int productQuantity = Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text);
                         int size = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex;
-                        bool isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 1) == "EU";
+                        bool isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 2) == "EU";
 
                         LineSale oneLS = new LineSale
                         {
