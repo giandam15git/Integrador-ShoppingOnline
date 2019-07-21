@@ -66,21 +66,59 @@ namespace Shopping.Online._1_Presentation
             Button btnBuy = (Button)sender;
             string[] commandArgs = btnBuy.CommandArgument.ToString().Split(new char[] { ',' });
             RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
-
-            int productId = Convert.ToInt32(commandArgs[0]);
-            decimal productPrice = Convert.ToInt32(commandArgs[1]);
-            int productQuantity = Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text);
-
-            LineSale oneLS = new LineSale
+            if ((item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex > 0)
             {
-                LineSaleId = -1,
-                LineSaleProductQuantity = productQuantity,
-                LineSaleProductPrice = productPrice,
-                ListLineSale = new List<LineSale>(),
-                LineSaleProductId = productId
-            };
+                if (Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text) > 0 && (item.FindControl("txtProductQuantity") as TextBox).Text != "")
+                {
+                    int productId = Convert.ToInt32(commandArgs[0]);
+                    if (this.ThereIsStock(productId))
+                    {
+                        decimal productPrice = Convert.ToInt32(commandArgs[1]);
+                        int productQuantity = Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text);
+                        int size = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex;
+                        bool isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 1) == "EU";
 
-            shoppingOnline.InsertToKart(oneLS);
+                        LineSale oneLS = new LineSale
+                        {
+                            LineSaleId = -1,
+                            LineSaleProductQuantity = productQuantity,
+                            LineSaleProductPrice = productPrice,
+                            ListLineSale = new List<LineSale>(),
+                            LineSaleProductId = productId
+                        };
+
+                        if (isTypeShoes)
+                        {
+                            oneLS.ProductStockSizeShoes = new int[17];
+                            oneLS.ProductStockSizeShoes[size] = productQuantity;
+                        }
+                        else
+                        {
+                            oneLS.ProductStockSize = new int[8];
+                            oneLS.ProductStockSize[size] = productQuantity;
+                        }
+
+                        shoppingOnline.InsertToKart(oneLS);
+                    }
+                    else
+                    {
+                        (item.FindControl("lblMessageProduct") as Label).Text = "Lo sentimos, no hay stock.";
+                    }
+                }
+                else
+                {
+                    (item.FindControl("lblMessageProduct") as Label).Text = "Por favor, ingrese una cantidad mayor a cero.";
+                }
+            }
+            else
+            {
+                (item.FindControl("lblMessageProduct") as Label).Text = "Por favor, seleccione un talle.";
+            }
+        }
+
+        private bool ThereIsStock(int productId)
+        {
+            return this.shoppingOnline.ThereIsStock(productId);
         }
     }
 }

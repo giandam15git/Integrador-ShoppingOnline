@@ -120,7 +120,6 @@ namespace Shopping.Online._1_Presentation
             }
 
             this.transactionHasError(this.shoppingOnline.Pay(isCreditCard, namePayment, numberFromPayment));
-
         }
         #endregion
 

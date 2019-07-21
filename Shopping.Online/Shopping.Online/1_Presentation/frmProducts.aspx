@@ -24,7 +24,7 @@
                                 <br />
                                 <asp:Button runat="server" ID="btnComprar" CssClass="btn btn-default" Text="Comprar" CommandName="Buy" CommandArgument='<%#Eval("ProductId") + "," + Eval("ProductPrice") %>' onclick="btnBuy_Click" />
                             </div>
-                            <asp:Label runat="server" CssClass="text-danger"></asp:Label>
+                        <asp:Label runat="server" ID="lblMessageProduct" CssClass="text-danger"></asp:Label>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>

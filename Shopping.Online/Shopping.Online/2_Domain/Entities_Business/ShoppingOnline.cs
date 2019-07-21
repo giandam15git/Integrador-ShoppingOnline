@@ -64,7 +64,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Departament.UpdateDepartament(pDepartament);
         }
-
         public void DeleteDepartament(int pDepartamentId)
         {
             DA_Departament.DeleteDepartament(pDepartamentId);
@@ -103,6 +102,11 @@ namespace Shopping.Online._2_Domain.Entities_Business
                 ClientId = clientId
             };
             return DA_Sale.InsertSale(oneSale);
+        }
+
+        public bool ThereIsStock(int productId)
+        {
+            return DA_Product.ThereIsStock(productId);
         }
         #endregion
 

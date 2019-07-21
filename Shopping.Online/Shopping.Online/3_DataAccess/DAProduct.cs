@@ -65,6 +65,17 @@ namespace Shopping.Online._3_DataAccess
             }
             return products;
         }
+        public bool ThereIsStock(int productId)
+        {
+            string strSQL = "SELECT SUM([XS]+[S] +[M] +[L] +[XL] +[XXL] +[XXXL] +[EU34] +[EU35] +[EU36] +[EU37] +[EU38] +[EU39] +[EU40] +[EU41] +[EU42] +[EU43] +[EU44] +[EU45] +[EU46] +[EU47] +[EU48] +[EU49])" +
+                " FROM[StockBySize] WHERE StockBySizeId = '" + productId + "'";
+            DataSet data = ExecuteWithResultSQL(strSQL);
+            if (data.Tables[0].Rows.Count > 0 && Convert.ToInt32(data.Tables[0].Rows[0].ItemArray[0]) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public List<Product> GetProductsLineSale(string productIdsForSQL)
         {
             List<Product> products = new List<Product>();

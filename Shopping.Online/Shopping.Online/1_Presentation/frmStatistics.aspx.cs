@@ -2,7 +2,9 @@
 using Shopping.Online._2_Domain.Entities_Business;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -166,9 +168,33 @@ namespace Shopping.Online._1_Presentation
             return totalAmount;
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //
+        }
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-
+            gvGenericProducts.AllowPaging = false;
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+            gvGenericProducts.RenderControl(hw);
+            string gridHTML = sw.ToString().Replace("\"", "'")
+                .Replace(System.Environment.NewLine, "");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<script type = 'text/javascript'>");
+            sb.Append("window.onload = new function(){");
+            sb.Append("var printWin = window.open('', '', 'left=0");
+            sb.Append(",top=0,width=1000,height=600,status=0');");
+            sb.Append("printWin.document.write(\"");
+            sb.Append(gridHTML);
+            sb.Append("\");");
+            sb.Append("printWin.document.close();");
+            sb.Append("printWin.focus();");
+            sb.Append("printWin.print();");
+            sb.Append("printWin.close();};");
+            sb.Append("</script>");
+            ClientScript.RegisterStartupScript(this.GetType(), "GridPrint", sb.ToString());
+            gvGenericProducts.AllowPaging = false;
         }
     }
 }

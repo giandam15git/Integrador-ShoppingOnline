@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using static Shopping.Online.Resources.Enumerate;
 
 namespace Shopping.Online._3_DataAccess
 {
@@ -29,8 +30,15 @@ namespace Shopping.Online._3_DataAccess
         {
             foreach (LineSale oneLS in listLineSale)
             {
+                foreach (int size in oneLS.ProductStockSize)
+                {
+                    if(size)
+                }
+                string shoes = Enum.GetName(typeof(ProductSizes), iMes);
+
                 string strSQL = "INSERT INTO [dbo].[LineSale] ([LineSaleProductQuantity],[LineSaleProductPrice],[ProductId],[SaleId]) VALUES('" + oneLS.LineSaleProductQuantity +
-                "', '" + oneLS.LineSaleProductPrice + "' , '" + oneLS.LineSaleProductId + "', '" + pSaleId + "')";
+                "', '" + oneLS.LineSaleProductPrice + "' , '" + oneLS.LineSaleProductId + "', '" + pSaleId + "') UPDATE StockBySize SET '" + + "' = '" + +"' - '" + +"' " +
+                "WHERE StockBySizeId = '" + oneLS.LineSaleProductId + "'";
                 ExecuteQuerySQL(strSQL);
             }
             return true;
