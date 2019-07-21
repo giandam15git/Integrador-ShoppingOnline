@@ -43,22 +43,18 @@ namespace Shopping.Online._3_DataAccess
             }
             return departaments;
         }
-
-
         public void InsertDepartament(Departament pDepartament)
         {
             string strSQL = "INSERT INTO dbo.Departament([DepartamentName],[DepartamentIsTypeShoes],[DepartamentIsDeleted])" +
                 " VALUES('" + pDepartament.DepartamentName + "','" + pDepartament.DepartamentIsTypeShoes + "', 0)";
             ExecuteQuerySQL(strSQL);
         }
-
         public void UpdateDepartament(Departament pDepartament)
         {
             string strSQL = "UPDATE Departament SET [DepartamentName] = '" + pDepartament.DepartamentName + "',[DepartamentIsTypeShoes] = '" + pDepartament.DepartamentIsTypeShoes + "'" +
-                "WHERE DeparamentId = '" + pDepartament.DepartamentId + "'";
+                "WHERE DepartamentId = '" + pDepartament.DepartamentId + "'";
             ExecuteQuerySQL(strSQL);
         }
-
         public void DeleteDepartament(int pDepartamentId)
         {
             string strSQL = "UPDATE Departament SET [DepartamentIsDeleted] = 1 WHERE DepartamentId = '" + pDepartamentId + "'";

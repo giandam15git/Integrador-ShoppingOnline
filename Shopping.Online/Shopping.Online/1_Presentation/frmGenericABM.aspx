@@ -98,7 +98,7 @@
 				<asp:FileUpload ID="FileUpload1" runat="server" />
 				<asp:RequiredFieldValidator runat="server" CssClass="text-danger" validationgroup="insertGroup" ControlToValidate="FileUpload1" ErrorMessage="Por favor, ingrese una imagen"/>
 
-<hr />
+            <hr />
 			</div>
 			
 			<div   runat="server" id="divProductPrice">
@@ -106,14 +106,15 @@
 
 				<asp:TextBox runat="server" ID="txtProductPrice" TextMode="Number" CssClass="form-control" ToolTip="Ingrese un stock para cada talle."/>
 				<asp:requiredfieldvalidator controltovalidate="txtProductPrice" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese el precio" runat="Server"/>
-<hr />
+             <hr />
 			</div>
 			
 			<div >
 				<div class="col-md-10">
-					<asp:Button ID="btnGenericInsert" validationgroup="insertGroup" runat="server" BorderColor="Green" CssClass="btn btn-default" OnClick="btnGenericInsert_Click"  />
-					<asp:Button ID="btnGenericUpdate" validationgroup="insertGroup" runat="server" BorderColor="Orange" CssClass="btn btn-default" OnClick="btnGenericUpdate_Click" />
-					<asp:Button ID="btnGenericDelete" validationgroup="deleteGroup" runat="server" BorderColor="Red" CssClass="btn btn-default" Text="Borrar" OnClick="btnGenericDelete_Click" Width="101px" />
+					<asp:Button ID="btnGenericInsert" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericInsert_Click"  />
+					<asp:Button ID="btnGenericUpdate" validationgroup="insertGroup" runat="server" CssClass="btn btn-default" OnClick="btnGenericUpdate_Click" />
+					<asp:Button ID="btnGenericDelete" validationgroup="deleteGroup" runat="server" CssClass="btn btn-default" Text="Borrar" OnClick="btnGenericDelete_Click" Width="101px" />
+                    <asp:Button ID="btnGenericReset" runat="server" CssClass="btn btn-default" Text="Limpiar" OnClick="btnGenericReset_Click" Width="101px" />
 				</div>
 			</div>
 			<div  runat="server" id="divLabelMessage">

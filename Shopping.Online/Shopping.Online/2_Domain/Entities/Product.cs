@@ -49,6 +49,13 @@ namespace Shopping.Online._2_Domain.Entities
             this.ProductStockSizeShoes = productStockSizeShoes;
             this.ProductPrice = productPrice;
         }
+        public Product(int productId, string productCode, string productName, string productDescription)
+        {
+            this.productId = productId;
+            this.productCode = productCode;
+            this.productName = productName;
+            this.productDescription = productDescription;
+        }
 
         public Product() { }
     }

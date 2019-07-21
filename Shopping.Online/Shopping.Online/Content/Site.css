@@ -76,7 +76,7 @@ textarea {
 
 .container2 {
     width: 300px;
-    height: 300px;
+    height: 220px;
     margin: 0 auto;
     top: 20px;
     word-break: break-all;
@@ -89,11 +89,11 @@ textarea {
     top: 20px;
     word-break: break-all;
     word-wrap: break-word;
-} 
+}
 
 .div-img {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 50px;
+    margin-right: 100px;
 }
 
     .div-img .img {
@@ -139,8 +139,50 @@ textarea {
 
 .cartNumberStyle {
     position: absolute;
-    color: royalblue;
+    color: chartreuse;
     z-index: 1;
-    margin-left: 8px;
-    margin-top: 23px;
+    margin-left: -7px;
+    margin-top: 8px;
+}
+
+.gvLineSalesBotton {
+    margin-top: 10px;
+    float: none !important;
+}
+
+.gvSalesTop {
+    margin-top: 20px;
+}
+
+.divSalesTop {
+    margin-left: 150px;
+}
+
+.divCalendar {
+    background-color: cornflowerblue;
+    border-bottom: solid;
+}
+
+.calendar {
+    border-width: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.lblTotalAmount {
+    background-color: beige;
+    margin-top: 35px;
+}
+
+.divBtnStatistics {
+    border-left: solid black;
+    border-right: solid black;
+    border-bottom: solid;
+    height: 221px;
+    background-color: skyblue;
+}
+
+.productDescription {
+    /**/
 }

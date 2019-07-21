@@ -17,6 +17,7 @@ namespace Shopping.Online
                 this.CartNumber.InnerText = ((List<LineSale>)Session["ListLineSale"]).Count.ToString();
             }
         }
+
         protected void IsformFamilies_ServerClick(object sender, EventArgs e)
         {
             Session.Remove("IsformProducts");
@@ -34,6 +35,11 @@ namespace Shopping.Online
         {
             Session["IsformProducts"] = true;
             Response.Redirect("/1_Presentation/frmGenericABM");
+        }
+
+        protected void IsStatistics_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("/1_Presentation/frmStatistics");
         }
     }
 }

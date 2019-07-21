@@ -49,6 +49,33 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.Calendar calendarTo;
         
         /// <summary>
+        /// btnSalesInDb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSalesInDb;
+        
+        /// <summary>
+        /// lblTotalAmountSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalAmountSales;
+        
+        /// <summary>
+        /// btnPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrint;
+        
+        /// <summary>
         /// lblMessageGv control.
         /// </summary>
         /// <remarks>
@@ -67,21 +94,39 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.GridView gvGenericProducts;
         
         /// <summary>
-        /// GridView1 control.
+        /// lblMessageSales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label lblMessageSales;
         
         /// <summary>
-        /// GridView2 control.
+        /// gvSales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView gvSales;
+        
+        /// <summary>
+        /// lblMessageLineSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessageLineSales;
+        
+        /// <summary>
+        /// gvLineSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvLineSales;
     }
 }

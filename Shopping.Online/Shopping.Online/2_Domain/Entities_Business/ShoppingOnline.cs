@@ -22,12 +22,6 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Client.InsertClient(pClient);
         }
-
-        public List<Product> GetProductByDate(string dateFrom, string dateTo, bool soldIn)
-        {
-            return DA_Statistics.GetProductByDate(dateFrom, dateTo, soldIn);
-        }
-
         public void SetClientIdSession(string clientEmail)
         {
             int clientId = DA_Client.GetClientId(clientEmail);
@@ -70,6 +64,7 @@ namespace Shopping.Online._2_Domain.Entities_Business
         {
             DA_Departament.UpdateDepartament(pDepartament);
         }
+
         public void DeleteDepartament(int pDepartamentId)
         {
             DA_Departament.DeleteDepartament(pDepartamentId);
@@ -100,10 +95,14 @@ namespace Shopping.Online._2_Domain.Entities_Business
         #endregion
 
         #region Sale
-        public int InsertSale(int pClientId)
+        public int InsertSale(int clientId)
         {
-            decimal saleAmount = GetTotalAmount();
-            return DA_Sale.InsertSale(saleAmount, pClientId);
+            Sale oneSale = new Sale
+            {
+                SaleAmount = GetTotalAmount(),
+                ClientId = clientId
+            };
+            return DA_Sale.InsertSale(oneSale);
         }
         #endregion
 
@@ -118,6 +117,15 @@ namespace Shopping.Online._2_Domain.Entities_Business
             if (Session["ListLineSale"] != null)
             {
                 listLS = (List<LineSale>)Session["ListLineSale"];
+            }
+            foreach (LineSale oneLS in listLS)
+            {
+                if (lineSale.ProductId == oneLS.ProductId)
+                {
+                    oneLS.LineSaleProductQuantity += lineSale.LineSaleProductQuantity;
+                    Session["ListLineSale"] = listLS;
+                    break;
+                }
             }
             listLS.Add(lineSale);
             Session["ListLineSale"] = listLS;
@@ -178,6 +186,20 @@ namespace Shopping.Online._2_Domain.Entities_Business
         }
         #endregion
 
+        #region Statistics
+        public List<Sale> GetListSalesByDate(string dateFrom, string dateTo)
+        {
+            return DA_Statistics.GetListSalesByDate(dateFrom, dateTo);
+        }
+        public List<LineSale> GetListLineSalesBySaleId(int saleId)
+        {
+            return DA_Statistics.GetListLineSalesBySaleId(saleId);
+        }
+        public List<Product> GetProductsByDate(string dateFrom, string dateTo, bool soldIn)
+        {
+            return DA_Statistics.GetProductsByDate(dateFrom, dateTo, soldIn);
+        }
+        #endregion
 
         #region Auxiliary Methods
         public decimal GetTotalAmount()
@@ -215,12 +237,10 @@ namespace Shopping.Online._2_Domain.Entities_Business
             }
             return null;
         }
-
-        public List<Family> GetFamilys()
+        public List<Family> GetFamilies()
         {
             return DA_Family.GetFamilies();
         }
-
         public List<Departament> GetDepartaments()
         {
             return DA_Departament.GetDepartaments();

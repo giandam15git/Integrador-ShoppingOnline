@@ -58,7 +58,7 @@ namespace Shopping.Online._3_DataAccess
         public void UpdateFamily(Family pFamily)
         {
             string strSQL = "UPDATE Family SET [FamilyName] = '" + pFamily.FamilyName + "',[DepartamentId] = '" + pFamily.DepartamentId + "'" +
-                "WHERE DeparamentId = '" + pFamily.DepartamentId + "'";
+                "WHERE FamilyId = '" + pFamily.FamilyId + "'";
             ExecuteQuerySQL(strSQL);
         }
 

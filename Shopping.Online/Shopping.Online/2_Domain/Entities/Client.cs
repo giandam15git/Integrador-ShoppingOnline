@@ -39,9 +39,13 @@ namespace Shopping.Online._2_Domain.Entities
             this.clientAddressBill = clientAddressBill;
             this.clientToHome = clientToHome;
         }
-
+        public Client(int clientId, string clientEmail)
+        {
+            this.clientId = clientId;
+            this.clientEmail = clientEmail;
+        }
         public Client()
         {
-        }
+        }        
     }
 }

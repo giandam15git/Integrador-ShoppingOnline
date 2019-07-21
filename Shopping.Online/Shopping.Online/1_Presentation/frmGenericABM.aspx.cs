@@ -271,6 +271,7 @@ namespace Shopping.Online._1_Presentation
         {
             Convert.ToInt32(ddlProductDepartamentFamily.SelectedItem.Value);
         }
+
         #endregion
 
         #region Product, Departament and Fimily (Insert, Update, Delete)
@@ -366,6 +367,7 @@ namespace Shopping.Online._1_Presentation
         private Departament MappingDepartamentData()
         {
             Departament pDepartament = new Departament();
+            pDepartament.DepartamentId = Convert.ToInt32(this.txtGenericId.Text);
             pDepartament.DepartamentName = this.txtGenericName.Text;
             pDepartament.DepartamentIsTypeShoes = this.rdbTypeShoesY.Checked;
 
@@ -374,6 +376,7 @@ namespace Shopping.Online._1_Presentation
         private Family MappingFamilyData()
         {
             Family pFamily = new Family();
+            pFamily.FamilyId = Convert.ToInt32(this.txtGenericId.Text);
             pFamily.FamilyName = this.txtGenericName.Text;
             pFamily.DepartamentId = Convert.ToInt32(this.ddlGenericDepartament.SelectedItem.Value);
             pFamily.DepartamentIsTypeShoes = this.rdbTypeShoesY.Checked;
@@ -382,19 +385,30 @@ namespace Shopping.Online._1_Presentation
         }
         private void ResetContents()
         {
+            if (this.ddlProductGenre.SelectedIndex != -1)
+            {
+                this.ddlProductGenre.SelectedIndex = 0;
+            }
+            if (this.ddlGenericDepartament.SelectedIndex != -1)
+            {
+                this.ddlGenericDepartament.SelectedIndex = 0;
+            }
+            if (this.ddlProductDepartamentFamily.SelectedIndex != -1)
+            {
+                this.ddlProductDepartamentFamily.SelectedIndex = 0;
+            }
+            if (this.ddlProductSize.SelectedIndex != -1)
+            {
+                this.ddlProductSize.SelectedIndex = 0;
+            }
             this.txtGenericId.Text = "";
             this.txtProductCode.Text = "";
             this.txtGenericName.Text = "";
             this.txtProductDescription.Text = "";
-            //this.ddlProductGenre.Text = "";
             this.txtProductColor.Text = "";
             this.rdbTypeShoesN.Checked = true;
-            //this.ddlGenericDepartament.Text = "";
-            //this.ddlProductDepartamentFamily.Text = "";
-            //this.ddlProductSize.Text = "";
             this.txtProductSizeStock.Text = "0";
             this.txtProductPrice.Text = "";
-
         }
         #endregion
 
@@ -415,7 +429,6 @@ namespace Shopping.Online._1_Presentation
                 ViewState["productStockSizeShoes"] = productStockSizeShoes;
             }
         }
-
         protected void rdbTypeShoes_CheckedChanged(object sender, EventArgs e)
         {
             if (ddlGenericDepartament.SelectedItem != null)
@@ -484,7 +497,7 @@ namespace Shopping.Online._1_Presentation
         }
         private void InitializeListGenericSessionFamily()
         {
-            List<Family> families = shoppingOnline.GetFamilys();
+            List<Family> families = shoppingOnline.GetFamilies();
             List<Product> productFamilies = new List<Product>();
             foreach (Family oneF in families)
             {
@@ -556,10 +569,9 @@ namespace Shopping.Online._1_Presentation
             gridView.Columns[8].Visible = false;
         }
 
-        //protected void gvGeneric_RowCommand(object sender, GridViewCommandEventArgs e)
-        //{
-        //    int index = Convert.ToInt32(e.CommandArgument);
-        //    string id = gvGeneric.Rows[index].Cells[4].Text;
-        //}
+        protected void btnGenericReset_Click(object sender, EventArgs e)
+        {
+            this.ResetContents();
+        }
     }
 }

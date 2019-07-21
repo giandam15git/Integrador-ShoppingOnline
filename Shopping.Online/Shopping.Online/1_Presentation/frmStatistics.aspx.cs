@@ -18,31 +18,32 @@ namespace Shopping.Online._1_Presentation
             {
                 this.SetCalendarToday();
                 this.LoadProductsSoldIn();
+                this.LoadSalesByDate();
             }
         }
 
         #region LoadData
-        public void LoadProductsSoldIn()
+        private void LoadProductsSoldIn()
         {
             string dateFrom = this.calendarFrom.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             string dateTo = this.calendarTo.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             bool soldIn = true;
 
-            List<Product> productsSoldIn = this.shopping.GetProductByDate(dateFrom, dateTo, soldIn);
-            this.lblMessageGv.Text = "Productos vendidos en el período selecionado";
+            List<Product> productsSoldIn = this.shopping.GetProductsByDate(dateFrom, dateTo, soldIn);
+            this.lblMessageGv.Text = "Productos vendidos en el período seleccionado";
             this.LoadGridGeneric(productsSoldIn);
         }
-        public void LoadProductsNotSoldIn()
+        private void LoadProductsNotSoldIn()
         {
             string dateFrom = this.calendarFrom.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             string dateTo = this.calendarTo.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             bool soldIn = false;
 
-            List<Product> productsNotSoldIn = this.shopping.GetProductByDate(dateFrom, dateTo, soldIn);
+            List<Product> productsNotSoldIn = this.shopping.GetProductsByDate(dateFrom, dateTo, soldIn);
             this.lblMessageGv.Text = "Productos NO vendidos en el período selecionado";
             this.LoadGridGeneric(productsNotSoldIn);
         }
-        public void LoadGridGeneric(List<Product> products)
+        private void LoadGridGeneric(List<Product> products)
         {
             if (products.Count > 0)
             {
@@ -56,6 +57,45 @@ namespace Shopping.Online._1_Presentation
                 this.lblMessageGv.Text = "No hay productos en la base de datos.";
             }
         }
+        private void LoadGridSales(List<Sale> listS)
+        {
+            if (listS.Count > 0)
+            {
+                this.gvSales.Visible = true;
+                this.gvSales.DataSource = listS;
+                this.gvSales.DataBind();
+                this.lblMessageSales.Text = "Estas son las ventas:";
+            }
+            else
+            {
+                this.gvSales.Visible = false;
+                this.lblMessageSales.Text = "No hay ventas en la base de datos.";
+            }
+        }
+        private void LoadSalesByDate()
+        {
+            string dateFrom = this.calendarFrom.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
+            string dateTo = this.calendarTo.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
+
+            List<Sale> listS = this.shopping.GetListSalesByDate(dateFrom, dateTo);
+            this.lblTotalAmountSales.Text = this.GetTotalAmountOfSales(listS).ToString();
+            this.LoadGridSales(listS);
+        }
+        private void LoadGridListSaleDetail(List<LineSale> listLS)
+        {
+            if (listLS.Count > 0)
+            {
+                this.gvLineSales.Visible = true;
+                this.lblMessageLineSales.Text = "Este es el detalle de la venta seleccionada:";
+                this.gvLineSales.DataSource = listLS;
+                this.gvLineSales.DataBind();
+            }
+            else
+            {
+                this.lblMessageLineSales.Text = "Aqui debajo se mostrará el detalle de la venta.";
+               this.gvLineSales.Visible = false;
+            }
+        }
         #endregion
 
         #region Set Data Default
@@ -65,19 +105,70 @@ namespace Shopping.Online._1_Presentation
             this.calendarTo.SelectedDate = DateTime.Today;
         }
         #endregion
-        protected void gvGenericProducts_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
+        #region Buttons
         protected void btnProductsSoldIn_Click(object sender, EventArgs e)
         {
             this.LoadProductsSoldIn();
         }
-
         protected void btnProductsNotSoldIn_Click(object sender, EventArgs e)
         {
             this.LoadProductsNotSoldIn();
+        }
+        protected void btnSalesInDb_Click(object sender, EventArgs e)
+        {
+            this.LoadSalesByDate();
+        }
+        #endregion
+
+        #region SelectedIndexChanged
+        protected void gvSales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridView gridView = (GridView)sender;
+            int saleId = Convert.ToInt32(gridView.SelectedRow.Cells[0].Text);
+
+            List<LineSale> listLS = this.GetListLineSaleBySaleId(saleId);
+            this.LoadGridListSaleDetail(this.VerifyLengthOfCharacters(listLS));
+        }
+        #endregion
+
+        private List<LineSale> VerifyLengthOfCharacters(List<LineSale> listLS)
+        {
+            foreach (LineSale oneLS in listLS)
+            {
+                if (oneLS.ProductName.Length > 10)
+                {
+                    string productNameAux = oneLS.ProductName.Remove(7, oneLS.ProductName.Length-7);
+                    oneLS.ProductName = productNameAux + "...";
+                }
+                if (oneLS.ProductDescription.Length > 10)
+                {
+                    string productDescriptionAux = oneLS.ProductDescription.Remove(7, oneLS.ProductDescription.Length-7);
+                    oneLS.ProductDescription = productDescriptionAux + "...";
+                }
+            }
+            return listLS;
+        }
+        private List<LineSale> GetListLineSaleBySaleId(int saleId)
+        {
+            return this.shopping.GetListLineSalesBySaleId(saleId);
+        }
+        private decimal GetTotalAmountOfSales(List<Sale> listSales)
+        {
+            decimal totalAmount = 0;
+            if (listSales.Count > 0)
+            {
+                foreach (Sale oneS in listSales)
+                {
+                    totalAmount += oneS.SaleAmount;
+                }
+            }
+            return totalAmount;
+        }
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

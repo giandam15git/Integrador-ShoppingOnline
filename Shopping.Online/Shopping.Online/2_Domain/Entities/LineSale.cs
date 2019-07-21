@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Shopping.Online._2_Domain.Entities
 {
-    public class LineSale
+    public class LineSale : Product
     {
         private int lineSaleId;
         private int lineSaleProductQuantity;
@@ -19,7 +19,8 @@ namespace Shopping.Online._2_Domain.Entities
         public List<LineSale> ListLineSale { get => listLineSale; set => listLineSale = value; }
         public int LineSaleProductId { get => lineSaleProductId; set => lineSaleProductId = value; }
 
-        public LineSale(int lineSaleId, int lineSaleProductQuantity, decimal lineSaleProductPrice, List<LineSale> listLineSale, int LineSaleProductId)
+        public LineSale(int lineSaleId, int lineSaleProductQuantity, decimal lineSaleProductPrice, List<LineSale> listLineSale, int LineSaleProductId, int productId, string productCode, string productName, string productDescription)
+            :base(productId, productCode, productName, productDescription)
         {
             this.LineSaleId = lineSaleId;
             this.LineSaleProductQuantity = lineSaleProductQuantity;

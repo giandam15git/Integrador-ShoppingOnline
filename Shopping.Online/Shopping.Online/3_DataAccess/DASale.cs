@@ -9,11 +9,11 @@ namespace Shopping.Online._3_DataAccess
 {
     public class DASale : Connection
     {
-        public int InsertSale(decimal saleAmount, int pClientId)
+        public int InsertSale(Sale oneSale)
         {
             int saleId = -1;
-            string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[ClientId]) VALUES('" + saleAmount + 
-                "', '" + pClientId + "') SELECT SCOPE_IDENTITY()";
+            string strSQL = "INSERT INTO [dbo].[Sale] ([SaleAmount],[ClientId]) VALUES('" + oneSale.SaleAmount + 
+                "', '" + oneSale.ClientId + "') SELECT SCOPE_IDENTITY()";
             DataSet data = ExecuteWithResultSQL(strSQL);
             if (data.Tables[0].Rows.Count > 0)
             {
