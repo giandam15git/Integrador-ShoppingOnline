@@ -11,7 +11,7 @@
             <h1>El pago se ha efectuado correctamente. ♥</h1>
         </div>
         <div class="col-md-6">
-            <asp:Repeater ID="rpProductsSale" runat="server">
+            <asp:Repeater ID="rpProductsSale" runat="server" OnItemDataBound="rpProductsSale_ItemDataBound">
                     <ItemTemplate>
                         <div class="col-md-8 divProductsRight" >
                             <h3><%#Eval("ProductName") %></h3>
@@ -23,6 +23,7 @@
                             <div class="col-md-12">
                                 <p><%#Eval("ProductDescription") %></p>
                                 <strong class="price">$<%#Eval("ProductPrice") %></strong>
+                                <asp:Label runat="server" ID="lblProductQuantity"></asp:Label>
                             </div>
                             <div class="col-md-12">
                                 <asp:Button runat="server" ID="btnDelete" CssClass="btn btn-default" Text="Borrar" CommandArgument='<%#Eval("ProductId")%>' onclick="btnDelete_Click"/>
@@ -73,7 +74,7 @@
                     <asp:Label runat="server" CssClass="control-label">Seleccione tipo de Pago</asp:Label>
                     <asp:DropDownList ID="ddlSelectTypePayment" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSelectTypePayment_SelectedIndexChanged" CssClass="form-control" ></asp:DropDownList>
                     <asp:Label runat="server" CssClass="control-label">Seleccione medio de Pago</asp:Label>
-                    <asp:DropDownList ID="ddlSelectPayment" runat="server" AutoPostBack="true" CssClass="form-control" ></asp:DropDownList>
+                    <asp:DropDownList ID="ddlSelectPayment" runat="server" CssClass="form-control" ></asp:DropDownList>
                     <asp:Label runat="server" CssClass="control-label">Ingrese número de pago</asp:Label>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNumberFromPayment" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
                     <asp:TextBox ID="txtNumberFromPayment" CssClass="form-control" runat="server"></asp:TextBox>

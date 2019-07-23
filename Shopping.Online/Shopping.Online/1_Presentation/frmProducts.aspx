@@ -17,7 +17,7 @@
                         </div>
                             <div class="col-md-6">
                                 <asp:Label runat="server" CssClass="control-label">Talle</asp:Label>
-                                <asp:DropDownList ID="ddlProductSizeGeneric" runat="server" AutoPostBack="true" CssClass="form-control" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlProductSizeGeneric" runat="server" AutoPostBack="false" CssClass="form-control" ></asp:DropDownList>
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlProductSizeGeneric" validationgroup="insertGroup" InitialValue="-Talle-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un talle" />
                                 <asp:Label runat="server" style="float: left;">Cantidad</asp:Label>
                                 <asp:TextBox runat="server" ID="txtProductQuantity" CssClass="form-control quantity" Text="0" TextMode="Number"></asp:TextBox>

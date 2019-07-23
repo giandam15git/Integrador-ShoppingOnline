@@ -30,16 +30,32 @@ namespace Shopping.Online._3_DataAccess
         {
             foreach (LineSale oneLS in listLineSale)
             {
-                /*foreach (int size in oneLS.ProductStockSize)
+                int value = 0;
+                string size = "";
+                for (int i = 0; i < oneLS.ProductStockSize.Length; i++)
                 {
-                    if(size)
+                    if (oneLS.ProductStockSize[i] > 0)
+                    {
+                        value = oneLS.ProductStockSize[i];
+                        size = Enum.GetName(typeof(ProductSizes), i);
+                    }
                 }
-                string shoes = Enum.GetName(typeof(ProductSizes), iMes);
+                if (size == "")
+                {
+                    for (int i = 0; i < oneLS.ProductStockSize.Length; i++)
+                    {
+                        if (oneLS.ProductStockSize[i] > 0)
+                        {
+                            value = oneLS.ProductStockSize[i];
+                            size = Enum.GetName(typeof(ProductSizeShoes), i);
+                        }
+                    }
+                }
 
                 string strSQL = "INSERT INTO [dbo].[LineSale] ([LineSaleProductQuantity],[LineSaleProductPrice],[ProductId],[SaleId]) VALUES('" + oneLS.LineSaleProductQuantity +
-                "', '" + oneLS.LineSaleProductPrice + "' , '" + oneLS.LineSaleProductId + "', '" + pSaleId + "') UPDATE StockBySize SET '" + + "' = '" + +"' - '" + +"' " +
+                "', '" + oneLS.LineSaleProductPrice + "' , '" + oneLS.LineSaleProductId + "', '" + pSaleId + "') UPDATE StockBySize SET " + size + " = " + size + " - " + value + " " +
                 "WHERE StockBySizeId = '" + oneLS.LineSaleProductId + "'";
-                ExecuteQuerySQL(strSQL);*/
+                ExecuteQuerySQL(strSQL);
             }
             return true;
         }

@@ -139,7 +139,7 @@ textarea {
 
 .cartNumberStyle {
     position: absolute;
-    color: chartreuse;
+    color: antiquewhite;
     z-index: 1;
     margin-left: -7px;
     margin-top: 8px;
@@ -172,7 +172,7 @@ textarea {
 
 .lblTotalAmount {
     background-color: beige;
-    margin-top: 35px;
+    margin-top: 136px;
 }
 
 .divBtnStatistics {
@@ -185,4 +185,8 @@ textarea {
 
 .productDescription {
     /**/
+}
+
+.divMailWelcome {
+    margin-top: 25%;
 }

@@ -13,7 +13,7 @@ namespace Shopping.Online._1_Presentation
 {
     public partial class frmStatistics : System.Web.UI.Page
     {
-        ShoppingOnline shopping = new ShoppingOnline();
+        ShoppingOnline shoppingOnline = new ShoppingOnline();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,6 +22,7 @@ namespace Shopping.Online._1_Presentation
                 this.LoadProductsSoldIn();
                 this.LoadSalesByDate();
             }
+            (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
 
         #region LoadData
@@ -31,7 +32,7 @@ namespace Shopping.Online._1_Presentation
             string dateTo = this.calendarTo.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             bool soldIn = true;
 
-            List<Product> productsSoldIn = this.shopping.GetProductsByDate(dateFrom, dateTo, soldIn);
+            List<Product> productsSoldIn = this.shoppingOnline.GetProductsByDate(dateFrom, dateTo, soldIn);
             this.lblMessageGv.Text = "Productos vendidos en el período seleccionado";
             this.LoadGridGeneric(productsSoldIn);
         }
@@ -41,7 +42,7 @@ namespace Shopping.Online._1_Presentation
             string dateTo = this.calendarTo.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             bool soldIn = false;
 
-            List<Product> productsNotSoldIn = this.shopping.GetProductsByDate(dateFrom, dateTo, soldIn);
+            List<Product> productsNotSoldIn = this.shoppingOnline.GetProductsByDate(dateFrom, dateTo, soldIn);
             this.lblMessageGv.Text = "Productos NO vendidos en el período selecionado";
             this.LoadGridGeneric(productsNotSoldIn);
         }
@@ -79,7 +80,7 @@ namespace Shopping.Online._1_Presentation
             string dateFrom = this.calendarFrom.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
             string dateTo = this.calendarTo.SelectedDate.ToString("yyyy-MM-dd hh:mm:ss");
 
-            List<Sale> listS = this.shopping.GetListSalesByDate(dateFrom, dateTo);
+            List<Sale> listS = this.shoppingOnline.GetListSalesByDate(dateFrom, dateTo);
             this.lblTotalAmountSales.Text = this.GetTotalAmountOfSales(listS).ToString();
             this.LoadGridSales(listS);
         }
@@ -153,7 +154,7 @@ namespace Shopping.Online._1_Presentation
         }
         private List<LineSale> GetListLineSaleBySaleId(int saleId)
         {
-            return this.shopping.GetListLineSalesBySaleId(saleId);
+            return this.shoppingOnline.GetListLineSalesBySaleId(saleId);
         }
         private decimal GetTotalAmountOfSales(List<Sale> listSales)
         {
@@ -174,27 +175,12 @@ namespace Shopping.Online._1_Presentation
         }
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            gvGenericProducts.AllowPaging = false;
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            gvGenericProducts.RenderControl(hw);
-            string gridHTML = sw.ToString().Replace("\"", "'")
-                .Replace(System.Environment.NewLine, "");
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<script type = 'text/javascript'>");
-            sb.Append("window.onload = new function(){");
-            sb.Append("var printWin = window.open('', '', 'left=0");
-            sb.Append(",top=0,width=1000,height=600,status=0');");
-            sb.Append("printWin.document.write(\"");
-            sb.Append(gridHTML);
-            sb.Append("\");");
-            sb.Append("printWin.document.close();");
-            sb.Append("printWin.focus();");
-            sb.Append("printWin.print();");
-            sb.Append("printWin.close();};");
-            sb.Append("</script>");
-            ClientScript.RegisterStartupScript(this.GetType(), "GridPrint", sb.ToString());
-            gvGenericProducts.AllowPaging = false;
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "openPrintProducts()();", true); 
+        }
+
+        protected void btnPrintBillSelected_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myScript", "openPrintBill()();", true);
         }
     }
 }

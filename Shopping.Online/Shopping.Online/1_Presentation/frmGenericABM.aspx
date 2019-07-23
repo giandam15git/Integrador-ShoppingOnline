@@ -37,7 +37,7 @@
 			</div>
 			<div  runat="server" id="divProductGenre">
 				<asp:Label runat="server" CssClass="control-label">Género</asp:Label>
-				<asp:DropDownList ID="ddlProductGenre" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlProductGenre_SelectedIndexChanged"/>
+				<asp:DropDownList ID="ddlProductGenre" runat="server" AutoPostBack="false" CssClass="form-control" />
 				<asp:RequiredFieldValidator runat="server" ControlToValidate="ddlProductGenre" validationgroup="insertGroup" InitialValue="-Genero-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un género" />
 			</div>
 			<div  runat="server" id="divProductColor">
@@ -75,7 +75,7 @@
 				<h4>Seleccione una Familia</h4>
 				<asp:Label runat="server" CssClass="control-label">Familia</asp:Label>
 
-				<asp:DropDownList ID="ddlProductDepartamentFamily" runat="server" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlProductDepartamentFamily_SelectedIndexChanged"/>
+				<asp:DropDownList ID="ddlProductDepartamentFamily" runat="server" AutoPostBack="false" CssClass="form-control" />
 				<asp:RequiredFieldValidator runat="server" ControlToValidate="ddlProductDepartamentFamily" validationgroup="insertGroup" InitialValue="-Familia-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un familia." />
 
 			</div>

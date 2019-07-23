@@ -10,14 +10,15 @@ namespace Shopping.Online._1_Presentation
 {
     public partial class frmWelcome : System.Web.UI.Page
     {
-        ShoppingOnline shopping = new ShoppingOnline();
+        ShoppingOnline shoppingOnline = new ShoppingOnline();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
         protected void linkGoToShop_Click(object sender, EventArgs e)
         {
-            shopping.SetClientIdSession(this.txtMailWelcome.Text);
+            shoppingOnline.SetClientIdSession(this.txtEmailWelcome.Text);
+            Session["ClientEmail"] = this.txtEmailWelcome.Text;
             Response.Redirect("frmProducts.aspx");
         }
     }

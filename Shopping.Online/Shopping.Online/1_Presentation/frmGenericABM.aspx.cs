@@ -48,6 +48,7 @@ namespace Shopping.Online._1_Presentation
                     this.LoadGenericGrid();
                 }
             }
+            (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
 
         #region LoadData
@@ -241,10 +242,6 @@ namespace Shopping.Online._1_Presentation
         #endregion
 
         #region SelectedIndex
-        protected void ddlProductGenre_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         protected void ddlProductSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = this.ddlProductSize.SelectedIndex;
@@ -266,10 +263,6 @@ namespace Shopping.Online._1_Presentation
         {
             int departamentId = Convert.ToInt32(ddlGenericDepartament.SelectedItem.Value);
             this.LoadFamily(departamentId);
-        }
-        protected void ddlProductDepartamentFamily_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Convert.ToInt32(ddlProductDepartamentFamily.SelectedItem.Value);
         }
 
         #endregion

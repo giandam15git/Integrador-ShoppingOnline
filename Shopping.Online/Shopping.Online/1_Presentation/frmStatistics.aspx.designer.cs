@@ -13,6 +13,15 @@ namespace Shopping.Online._1_Presentation {
     public partial class frmStatistics {
         
         /// <summary>
+        /// btnPrintProductsSoldInOrNot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrintProductsSoldInOrNot;
+        
+        /// <summary>
         /// btnProductsSoldIn control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,13 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.Calendar calendarTo;
         
         /// <summary>
-        /// btnSalesInDb control.
+        /// btnPrintBillSelected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSalesInDb;
+        protected global::System.Web.UI.WebControls.Button btnPrintBillSelected;
         
         /// <summary>
         /// lblTotalAmountSales control.
@@ -67,13 +76,13 @@ namespace Shopping.Online._1_Presentation {
         protected global::System.Web.UI.WebControls.Label lblTotalAmountSales;
         
         /// <summary>
-        /// btnPrint control.
+        /// btnSalesInDb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrint;
+        protected global::System.Web.UI.WebControls.Button btnSalesInDb;
         
         /// <summary>
         /// lblMessageGv control.

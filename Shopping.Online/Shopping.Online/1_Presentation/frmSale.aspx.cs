@@ -34,25 +34,34 @@ namespace Shopping.Online._1_Presentation
                     this.rpProductsSale.Visible = false;
                 }
             }
+            (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
 
         private void ClientExist()
         {
             if (Session["ClientId"] != null)
             {
-                Client oneCli = this.shoppingOnline.GetClient(Convert.ToInt32(Session["ClientId"]));
-                this.txtClientFullName.Text = oneCli.ClientFullName;
-                this.txtClientEmail.Text = oneCli.ClientEmail;
-                this.txtClientCI.Text = oneCli.ClientCI;
-                this.txtClientPhoneNumber.Text = oneCli.ClientPhoneNumber;
-                this.txtClientDepartament.Text = oneCli.ClientDepartament;
-                this.txtClientCity.Text = oneCli.ClientCity;
-                this.txtClientFullName.ReadOnly = true;
-                this.txtClientEmail.ReadOnly = true;
-                this.txtClientCI.ReadOnly = true;
-                this.txtClientPhoneNumber.ReadOnly = true;
-                this.txtClientDepartament.ReadOnly = true;
-                this.txtClientCity.ReadOnly = true;
+                if (Convert.ToInt32(Session["ClientId"]) != -1)
+                {
+                    Client oneCli = this.shoppingOnline.GetClient(Convert.ToInt32(Session["ClientId"]));
+                    this.txtClientFullName.Text = oneCli.ClientFullName;
+                    this.txtClientEmail.Text = oneCli.ClientEmail;
+                    this.txtClientCI.Text = oneCli.ClientCI;
+                    this.txtClientPhoneNumber.Text = oneCli.ClientPhoneNumber;
+                    this.txtClientDepartament.Text = oneCli.ClientDepartament;
+                    this.txtClientCity.Text = oneCli.ClientCity;
+                    this.txtClientFullName.ReadOnly = true;
+                    this.txtClientEmail.ReadOnly = true;
+                    this.txtClientCI.ReadOnly = true;
+                    this.txtClientPhoneNumber.ReadOnly = true;
+                    this.txtClientDepartament.ReadOnly = true;
+                    this.txtClientCity.ReadOnly = true;
+                }
+                else
+                {
+                    this.txtClientEmail.Text = Session["ClientEmail"].ToString();
+                    this.txtClientEmail.ReadOnly = true;
+                }
             }
         }
 
@@ -106,15 +115,16 @@ namespace Shopping.Online._1_Presentation
             Button btnDelete = (Button)sender;
             int ProductId = Convert.ToInt32(btnDelete.CommandArgument);
             shoppingOnline.DeleteLineSale(ProductId);
+            this.LoadProductsLineSale();
+            (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
         protected void btnPay_Click(object sender, EventArgs e)
         {
-            //Validar que haya compras desde FrontEnd
             bool isCreditCard = this.ddlSelectTypePayment.SelectedItem.Text == TypesPayments.TC;
             string namePayment = this.ddlSelectPayment.SelectedItem.Text;
             string numberFromPayment = this.txtNumberFromPayment.Text; 
 
-            if (Session["ClientId"] == null)
+            if (Session["ClientId"] == null || Convert.ToInt32(Session["ClientId"]) == -1)
             {
                 this.InsertClient();
             }
@@ -130,6 +140,8 @@ namespace Shopping.Online._1_Presentation
             {
                 this.divHasError.Visible = false;
                 this.divSuccess.Visible = true;
+                this.shoppingOnline.ResetListLineSale();
+                Response.Redirect("/1_Presentation/frmSale");
             }
             else
             {
@@ -144,7 +156,14 @@ namespace Shopping.Online._1_Presentation
         }
         protected void rpProductsSale_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            bool isShoes = bool.Parse(DataBinder.Eval(e.Item.DataItem, "DepartamentIsTypeShoes").ToString());
+            int productId = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "ProductId").ToString());
+            foreach (LineSale oneLS in shoppingOnline.GetListLineSale())
+            {
+                if (oneLS.LineSaleProductId == productId)
+                {
+                    (e.Item.FindControl("lblProductQuantity") as Label).Text = "X " + oneLS.LineSaleProductQuantity.ToString();
+                }
+            }
         }
         protected void ddlSelectTypePayment_SelectedIndexChanged(object sender, EventArgs e)
         {

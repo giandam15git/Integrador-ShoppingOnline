@@ -22,6 +22,7 @@ namespace Shopping.Online._1_Presentation
             {
                 this.LoadProducts();
             }
+            (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
 
         private void LoadProducts()
@@ -73,10 +74,15 @@ namespace Shopping.Online._1_Presentation
                     int productId = Convert.ToInt32(commandArgs[0]);
                     if (this.ThereIsStock(productId))
                     {
+                        bool isTypeShoes = false;
                         decimal productPrice = Convert.ToInt32(commandArgs[1]);
                         int productQuantity = Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text);
                         int size = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex;
-                        bool isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 2) == "EU";
+
+                        if ((item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Length > 1)
+                        {
+                            isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 2) == "EU";
+                        }                       
 
                         LineSale oneLS = new LineSale
                         {
@@ -99,6 +105,7 @@ namespace Shopping.Online._1_Presentation
                         }
 
                         shoppingOnline.InsertToKart(oneLS);
+                        (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
                     }
                     else
                     {

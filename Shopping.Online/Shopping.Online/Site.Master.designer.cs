@@ -13,22 +13,31 @@ namespace Shopping.Online {
     public partial class SiteMaster {
         
         /// <summary>
-        /// CartId control.
+        /// linkProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor CartId;
+        protected global::System.Web.UI.WebControls.LinkButton linkProducts;
         
         /// <summary>
-        /// CartNumber control.
+        /// linkCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CartNumber;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkCart;
+        
+        /// <summary>
+        /// lblCartNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCartNumber;
         
         /// <summary>
         /// MainContent control.

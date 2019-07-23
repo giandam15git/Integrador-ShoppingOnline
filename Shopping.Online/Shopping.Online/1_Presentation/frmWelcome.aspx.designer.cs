@@ -13,13 +13,13 @@ namespace Shopping.Online._1_Presentation {
     public partial class frmWelcome {
         
         /// <summary>
-        /// txtMailWelcome control.
+        /// txtEmailWelcome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMailWelcome;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailWelcome;
         
         /// <summary>
         /// linkGoToShop control.

@@ -1,4 +1,5 @@
 ﻿using Shopping.Online._2_Domain.Entities;
+using Shopping.Online._2_Domain.Entities_Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,17 @@ namespace Shopping.Online
 {
     public partial class SiteMaster : MasterPage
     {
+        ShoppingOnline shoppingOnline = new ShoppingOnline();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["ListLineSale"] != null)
+            
+            if (Session["ClientId"] != null)
             {
-                this.CartNumber.InnerText = ((List<LineSale>)Session["ListLineSale"]).Count.ToString();
+                this.linkProducts.Visible = true;
+            }
+            else
+            {
+                this.linkProducts.Visible = false;
             }
         }
 
@@ -40,6 +47,16 @@ namespace Shopping.Online
         protected void IsStatistics_ServerClick(object sender, EventArgs e)
         {
             Response.Redirect("/1_Presentation/frmStatistics");
+        }
+
+        protected void linkProducts_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/1_Presentation/frmProducts");
+        }
+
+        protected void lblCartNumber_Init(object sender, EventArgs e)
+        {
+            this.lblCartNumber.Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
     }
 }
