@@ -117,19 +117,27 @@ namespace Shopping.Online._1_Presentation
             shoppingOnline.DeleteLineSale(ProductId);
             this.LoadProductsLineSale();
             (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
+            this.lblTotalAmount.Text = "Precio Total: UYU " + shoppingOnline.GetTotalAmount().ToString();
         }
         protected void btnPay_Click(object sender, EventArgs e)
         {
             bool isCreditCard = this.ddlSelectTypePayment.SelectedItem.Text == TypesPayments.TC;
             string namePayment = this.ddlSelectPayment.SelectedItem.Text;
-            string numberFromPayment = this.txtNumberFromPayment.Text; 
+            string numberFromPayment = this.txtNumberFromPayment.Text;
 
-            if (Session["ClientId"] == null || Convert.ToInt32(Session["ClientId"]) == -1)
+            if (this.shoppingOnline.GetListLineSale().Count > 0)
             {
-                this.InsertClient();
+                if (Session["ClientId"] == null || Convert.ToInt32(Session["ClientId"]) == -1)
+                {
+                    this.InsertClient();
+                }
+                this.transactionHasError(this.shoppingOnline.Pay(isCreditCard, namePayment, numberFromPayment));
+                this.divNotProductsInKart.Visible = false;
             }
-
-            this.transactionHasError(this.shoppingOnline.Pay(isCreditCard, namePayment, numberFromPayment));
+            else
+            {
+                this.divNotProductsInKart.Visible = true;
+            }
         }
         #endregion
 
@@ -141,7 +149,8 @@ namespace Shopping.Online._1_Presentation
                 this.divHasError.Visible = false;
                 this.divSuccess.Visible = true;
                 this.shoppingOnline.ResetListLineSale();
-                Response.Redirect("/1_Presentation/frmSale");
+                this.LoadProductsLineSale();
+                (this.Master.FindControl("lblCartNumber") as Label).Text = this.shoppingOnline.GetListLineSale().Count.ToString();
             }
             else
             {

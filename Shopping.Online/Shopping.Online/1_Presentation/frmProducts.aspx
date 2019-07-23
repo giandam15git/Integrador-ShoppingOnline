@@ -2,9 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="col-md-12">
+            <div runat="server" id="divMessageNoProducts">
+				<h1> Lo sentimos, no hay productos</h1>
+			</div>
             <asp:Repeater ID="rpProducts" runat="server" OnItemDataBound="rpProducts_ItemDataBound">
                 <ItemTemplate>
-                    <div class="col-md-4" style="background-color: lightblue;border-radius: 35px;margin-right: 4px; margin-top: 4px;">
+                    <div class="col-md-4" style="background-color: lightblue;border-radius: 35px;margin-right: 4px; margin-top: 4px; width:330px !important; height: 550px !important;">
                         <h3><%#Eval("ProductName") %></h3>
                         <div class="container2">
                             <div class="div-img">
@@ -15,10 +18,10 @@
                             <p><%#Eval("ProductDescription") %></p>
                             <strong class="price" >$<%#Eval("ProductPrice") %></strong>
                         </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="width: 100%;">
                                 <asp:Label runat="server" CssClass="control-label">Talle</asp:Label>
                                 <asp:DropDownList ID="ddlProductSizeGeneric" runat="server" AutoPostBack="false" CssClass="form-control" ></asp:DropDownList>
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlProductSizeGeneric" validationgroup="insertGroup" InitialValue="-Talle-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un talle" />
+                                <asp:RequiredFieldValidator runat="server" style="float: right;" ControlToValidate="ddlProductSizeGeneric" validationgroup="insertGroup" InitialValue="-Talle-" CssClass="text-danger" ErrorMessage="Por favor, seleccione un talle" />
                                 <asp:Label runat="server" style="float: left;">Cantidad</asp:Label>
                                 <asp:TextBox runat="server" ID="txtProductQuantity" CssClass="form-control quantity" Text="0" TextMode="Number"></asp:TextBox>
                                 <br />

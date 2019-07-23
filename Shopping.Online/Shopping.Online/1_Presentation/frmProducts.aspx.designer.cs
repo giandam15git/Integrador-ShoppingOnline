@@ -13,6 +13,15 @@ namespace Shopping.Online._1_Presentation {
     public partial class frmProducts {
         
         /// <summary>
+        /// divMessageNoProducts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMessageNoProducts;
+        
+        /// <summary>
         /// rpProducts control.
         /// </summary>
         /// <remarks>

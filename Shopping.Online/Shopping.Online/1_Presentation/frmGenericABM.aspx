@@ -21,17 +21,17 @@
 			<div runat="server" id="divProductCode"> 
 				<asp:Label runat="server" CssClass="control-label">Código</asp:Label>
 				<asp:requiredfieldvalidator controltovalidate="txtProductCode" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese el código del producto" runat="Server"/>
-				<asp:TextBox runat="server" ID="txtProductCode" TextMode="Number" CssClass="form-control"/>
+				<asp:TextBox runat="server" ID="txtProductCode" MaxLength="10" CssClass="form-control"/>
 			</div>
 			<div  runat="server" id="divGenericName">
 				<asp:Label runat="server" CssClass="control-label">Nombre</asp:Label>
-				<asp:TextBox runat="server" ID="txtGenericName" CssClass="form-control"/>
-				<asp:requiredfieldvalidator controltovalidate="txtGenericName" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese el nombre del producto" runat="Server"/>
+				<asp:TextBox runat="server" ID="txtGenericName" MaxLength="20" CssClass="form-control"/>
+				<asp:requiredfieldvalidator controltovalidate="txtGenericName" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese el nombre." runat="Server"/>
 			</div>
 			<div  runat="server" id="divProductDescription">
 				<asp:Label runat="server" CssClass="control-label">Descripción</asp:Label>
 
-				<asp:TextBox runat="server" ID="txtProductDescription" CssClass="form-control"/>
+				<asp:TextBox runat="server" ID="txtProductDescription" MaxLength="60" CssClass="form-control"/>
 				<asp:requiredfieldvalidator controltovalidate="txtProductDescription" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese una descripción del producto" runat="Server"/>
 
 			</div>
@@ -88,7 +88,7 @@
 			<div  runat="server" id="divProductSizeStock">
 				<asp:Label runat="server" CssClass="control-label">Stock</asp:Label>
 
-				<asp:TextBox runat="server" AutoPostBack="true" ID="txtProductSizeStock" TextMode="Number" CssClass="form-control" ToolTip="Ingrese un stock para cada talle." OnTextChanged="txtProductSizeStock_TextChanged"/>
+				<asp:TextBox runat="server" AutoPostBack="true" ID="txtProductSizeStock" MaxLength="5" TextMode="Number" CssClass="form-control" ToolTip="Ingrese un stock para cada talle." OnTextChanged="txtProductSizeStock_TextChanged"/>
 				<asp:requiredfieldvalidator controltovalidate="txtProductSizeStock" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese stock" runat="Server"/>
 
 			</div>
@@ -104,7 +104,7 @@
 			<div   runat="server" id="divProductPrice">
 				<asp:Label runat="server" CssClass="control-label">Precio en UYU</asp:Label>
 
-				<asp:TextBox runat="server" ID="txtProductPrice" TextMode="Number" CssClass="form-control" ToolTip="Ingrese un stock para cada talle."/>
+				<asp:TextBox runat="server" ID="txtProductPrice" MaxLength="17" TextMode="Number" CssClass="form-control" ToolTip="Ingrese un stock para cada talle."/>
 				<asp:requiredfieldvalidator controltovalidate="txtProductPrice" CssClass="text-danger" validationgroup="insertGroup" errormessage="Por favor, ingrese el precio" runat="Server"/>
              <hr />
 			</div>
@@ -123,7 +123,7 @@
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
-				<div class="col-md-offset-2 col-md-6">
+				<div class="col-md-offset-2 col-md-6" style="margin-top: 27px">
 					<asp:GridView ID="gvGeneric" runat="server" OnDataBound="gvGeneric_DataBound" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnSelectedIndexChanged="gvGeneric_SelectedIndexChanged">
 						<AlternatingRowStyle BackColor="#CCCCCC" />
 						<Columns>

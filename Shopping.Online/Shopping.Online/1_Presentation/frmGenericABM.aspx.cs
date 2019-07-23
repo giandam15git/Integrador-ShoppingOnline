@@ -236,7 +236,18 @@ namespace Shopping.Online._1_Presentation
             else
             {
                 gvGeneric.Visible = false;
-                lblMessageGv.Text = "No hay productos en la base de datos.";
+                if (Convert.ToBoolean(Session["IsformProducts"]))
+                {
+                    lblMessageGv.Text = "No hay productos en la base de datos.";
+                }
+                else if (Convert.ToBoolean(Session["IsformFamilies"]))
+                {
+                    lblMessageGv.Text = "No hay familias en la base de datos.";
+                }
+                else
+                {
+                    lblMessageGv.Text = "No hay departamentos en la base de datos.";
+                }
             }
         }
         #endregion
@@ -276,6 +287,8 @@ namespace Shopping.Online._1_Presentation
                 this.shoppingOnline.InsertProduct(MappingProductData());
                 this.InitializeListGenericSessionProducts();
                 this.LoadGenericGrid();
+                ViewState["productStockSize"] = new int[8];
+                ViewState["productStockSizeShoes"] = new int[17];
             }
             else if (Convert.ToBoolean(Session["IsformFamilies"]))
             {
@@ -360,7 +373,7 @@ namespace Shopping.Online._1_Presentation
         private Departament MappingDepartamentData()
         {
             Departament pDepartament = new Departament();
-            pDepartament.DepartamentId = Convert.ToInt32(this.txtGenericId.Text);
+            pDepartament.DepartamentId = this.txtGenericId.Text != "" ? Convert.ToInt32(this.txtGenericId.Text) : -1;
             pDepartament.DepartamentName = this.txtGenericName.Text;
             pDepartament.DepartamentIsTypeShoes = this.rdbTypeShoesY.Checked;
 
@@ -369,7 +382,7 @@ namespace Shopping.Online._1_Presentation
         private Family MappingFamilyData()
         {
             Family pFamily = new Family();
-            pFamily.FamilyId = Convert.ToInt32(this.txtGenericId.Text);
+            pFamily.FamilyId = this.txtGenericId.Text != "" ? Convert.ToInt32(this.txtGenericId.Text) : -1;
             pFamily.FamilyName = this.txtGenericName.Text;
             pFamily.DepartamentId = Convert.ToInt32(this.ddlGenericDepartament.SelectedItem.Value);
             pFamily.DepartamentIsTypeShoes = this.rdbTypeShoesY.Checked;
@@ -399,7 +412,6 @@ namespace Shopping.Online._1_Presentation
             this.txtGenericName.Text = "";
             this.txtProductDescription.Text = "";
             this.txtProductColor.Text = "";
-            this.rdbTypeShoesN.Checked = true;
             this.txtProductSizeStock.Text = "0";
             this.txtProductPrice.Text = "";
         }

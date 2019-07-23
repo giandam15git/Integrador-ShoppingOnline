@@ -27,9 +27,18 @@ namespace Shopping.Online._1_Presentation
 
         private void LoadProducts()
         {
-            this.rpProducts.DataSource = null;
-            this.rpProducts.DataSource = shoppingOnline.GetProducts();
-            this.rpProducts.DataBind();
+            List<Product> list = shoppingOnline.GetProducts();
+            if (list.Count > 0)
+            {
+                this.divMessageNoProducts.Visible = false;
+                this.rpProducts.DataSource = null;
+                this.rpProducts.DataSource = list;
+                this.rpProducts.DataBind();
+            }
+            else
+            {
+                this.divMessageNoProducts.Visible = true;
+            }
         }
         public bool LoadSizeGeneric(bool isShoes, RepeaterItemEventArgs e)
         {

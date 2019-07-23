@@ -2,7 +2,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div  runat="server" class="col-md-12" id="divNotProductsInKart" visible="false">
-            <h1>Lo sentimos, todavía no has agregado productos a tu carrito. :(</h1>
+            <h1>Lo sentimos, todavía no hay productos en tu carrito. :(</h1>
         </div>
         <div  runat="server" class="col-md-12" id="divHasError" visible="false">
             <h1>Hubo un error al efectuar el pago, por favor, reintente. :)</h1>
@@ -37,31 +37,31 @@
             <div class="col-md-10 divFormLeft">
                 <asp:Label runat="server" CssClass="control-label">Nombre Completo</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientFullName" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox runat="server" ID="txtClientFullName" CssClass="form-control" ></asp:TextBox>
+                <asp:TextBox runat="server" MaxLength="50" ID="txtClientFullName" CssClass="form-control" ></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Email</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientEmail" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox runat="server" ID="txtClientEmail" CssClass="form-control" TextMode="Email" ></asp:TextBox>
+                <asp:TextBox runat="server" MaxLength="50" ID="txtClientEmail" CssClass="form-control" TextMode="Email" ></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">CI</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientCI" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox runat="server" ID="txtClientCI" CssClass="form-control" TextMode="Number" ></asp:TextBox>
+                <asp:TextBox runat="server" MaxLength="20" ID="txtClientCI" CssClass="form-control" TextMode="Number" ></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Teléfono</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientPhoneNumber" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox ID="txtClientPhoneNumber" CssClass="form-control" TextMode="Number" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtClientPhoneNumber" MaxLength="20" CssClass="form-control" TextMode="Number" runat="server"></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Departamento</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientDepartament" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox ID="txtClientDepartament" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtClientDepartament" MaxLength="20" CssClass="form-control" runat="server"></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Ciudad</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientCity" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox ID="txtClientCity" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtClientCity" MaxLength="20" CssClass="form-control" runat="server"></asp:TextBox>
 
                 <asp:Label runat="server" CssClass="control-label">Dirección de Factura</asp:Label>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtClientAddressBill" ValidationGroup="insertClient" CssClass="text-danger" ErrorMessage=" *" />
-                <asp:TextBox ID="txtClientAddressBill" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtClientAddressBill" MaxLength="50" CssClass="form-control" runat="server"></asp:TextBox>
                 <hr />
                 <div class="col-md-8">
                     <asp:Label runat="server" CssClass="control-label">¿Desea que le enviemos la compra?</asp:Label>

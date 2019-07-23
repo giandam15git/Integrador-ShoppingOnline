@@ -132,7 +132,7 @@ namespace Shopping.Online._2_Domain.Entities_Business
             {
                 foreach (LineSale oneLS in listLS)
                 {
-                    if (lineSale.ProductId == oneLS.ProductId)
+                    if (lineSale.LineSaleProductId == oneLS.LineSaleProductId)
                     {
                         oneLS.LineSaleProductQuantity += lineSale.LineSaleProductQuantity;
                         Session["ListLineSale"] = listLS;
