@@ -76,6 +76,7 @@ namespace Shopping.Online._1_Presentation
             Button btnBuy = (Button)sender;
             string[] commandArgs = btnBuy.CommandArgument.ToString().Split(new char[] { ',' });
             RepeaterItem item = (sender as Button).NamingContainer as RepeaterItem;
+            (item.FindControl("lblMessageProduct") as Label).Text = "";
             if ((item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex > 0)
             {
                 if (Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text) > 0 && (item.FindControl("txtProductQuantity") as TextBox).Text != "")

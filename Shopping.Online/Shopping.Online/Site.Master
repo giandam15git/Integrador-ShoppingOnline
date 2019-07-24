@@ -55,7 +55,7 @@
                         <li><asp:LinkButton runat="server" ID="linkProducts" OnClick="linkProducts_Click" >Productos</asp:LinkButton></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" id="linkCart" href="~/1_Presentation/frmSale">
+                        <li><a runat="server" id="linkCart" onserverclick="linkCart_ServerClick">
                             <asp:Label ID="lblCartNumber" runat="server" CssClass="cartNumberStyle" ></asp:Label>
                             <span class="glyphicon glyphicon-shopping-cart"></span> Mi Carrito
                             </a>

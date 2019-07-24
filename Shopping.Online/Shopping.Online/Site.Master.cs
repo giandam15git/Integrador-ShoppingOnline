@@ -58,5 +58,17 @@ namespace Shopping.Online
         {
             this.lblCartNumber.Text = this.shoppingOnline.GetListLineSale().Count.ToString();
         }
+
+        protected void linkCart_ServerClick(object sender, EventArgs e)
+        {
+            if (Session["ClientId"] != null)
+            {
+                Response.Redirect("/1_Presentation/frmSale");
+            }
+            else
+            {
+                Response.Redirect("/1_Presentation/frmWelcome");
+            }
+        }
     }
 }

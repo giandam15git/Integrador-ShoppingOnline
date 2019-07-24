@@ -51,6 +51,7 @@ namespace Shopping.Online._1_Presentation
             if (products.Count > 0)
             {
                 this.gvGenericProducts.Visible = true;
+                this.gvGenericProducts.DataSource = null;
                 this.gvGenericProducts.DataSource = products;
                 this.gvGenericProducts.DataBind();
             }
