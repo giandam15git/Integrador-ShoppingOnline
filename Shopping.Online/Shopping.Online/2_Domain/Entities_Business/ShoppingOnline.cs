@@ -109,9 +109,9 @@ namespace Shopping.Online._2_Domain.Entities_Business
             };
             return DA_Sale.InsertSale(oneSale);
         }
-        public bool ThereIsStock(int productId)
+        public bool ThereIsStock(int productId, int size, bool isTypeShoes)
         {
-            return DA_Product.ThereIsStock(productId);
+            return DA_Product.ThereIsStock(productId, size, isTypeShoes);
         }
         #endregion
 

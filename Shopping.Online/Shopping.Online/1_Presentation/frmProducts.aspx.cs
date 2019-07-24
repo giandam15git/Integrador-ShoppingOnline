@@ -81,19 +81,17 @@ namespace Shopping.Online._1_Presentation
             {
                 if (Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text) > 0 && (item.FindControl("txtProductQuantity") as TextBox).Text != "")
                 {
-                    int productId = Convert.ToInt32(commandArgs[0]);
-                    if (this.ThereIsStock(productId))
+                    bool isTypeShoes = false;
+                    if ((item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Length > 1)
                     {
-                        bool isTypeShoes = false;
+                        isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 2) == "EU";
+                    }
+                    int size = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex;
+                    int productId = Convert.ToInt32(commandArgs[0]);
+                    if (this.ThereIsStock(productId, size, isTypeShoes))
+                    {
                         decimal productPrice = Convert.ToInt32(commandArgs[1]);
                         int productQuantity = Convert.ToInt32((item.FindControl("txtProductQuantity") as TextBox).Text);
-                        int size = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedIndex;
-
-                        if ((item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Length > 1)
-                        {
-                            isTypeShoes = (item.FindControl("ddlProductSizeGeneric") as DropDownList).SelectedItem.Text.Substring(0, 2) == "EU";
-                        }                       
-
                         LineSale oneLS = new LineSale
                         {
                             LineSaleId = -1,
@@ -133,9 +131,9 @@ namespace Shopping.Online._1_Presentation
             }
         }
 
-        private bool ThereIsStock(int productId)
+        private bool ThereIsStock(int productId, int size, bool isTypeShoes)
         {
-            return this.shoppingOnline.ThereIsStock(productId);
+            return this.shoppingOnline.ThereIsStock(productId, size, isTypeShoes);
         }
     }
 }

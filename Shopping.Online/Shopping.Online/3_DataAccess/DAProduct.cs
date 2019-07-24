@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using static Shopping.Online.Resources.Enumerate;
 
 namespace Shopping.Online._3_DataAccess
 {
@@ -65,10 +66,18 @@ namespace Shopping.Online._3_DataAccess
             }
             return products;
         }
-        public bool ThereIsStock(int productId)
+        public bool ThereIsStock(int productId, int size, bool isTypeShoes)
         {
-            string strSQL = "SELECT SUM([XS]+[S] +[M] +[L] +[XL] +[XXL] +[XXXL] +[EU34] +[EU35] +[EU36] +[EU37] +[EU38] +[EU39] +[EU40] +[EU41] +[EU42] +[EU43] +[EU44] +[EU45] +[EU46] +[EU47] +[EU48] +[EU49])" +
-                " FROM[StockBySize] WHERE StockBySizeId = '" + productId + "'";
+            string sizeAux = "";
+            if (isTypeShoes)
+            {
+                sizeAux = Enum.GetName(typeof(ProductSizeShoes), size);
+            }
+            else
+            {
+                sizeAux = Enum.GetName(typeof(ProductSizes), size);
+            }
+            string strSQL = "SELECT " + sizeAux + " FROM[StockBySize] SBS INNER JOIN Product P ON SBS.StockBySizeId = P.StockBySizeId WHERE P.ProductId = '" + productId + "'";
             DataSet data = ExecuteWithResultSQL(strSQL);
             if (data.Tables[0].Rows.Count > 0 && Convert.ToInt32(data.Tables[0].Rows[0].ItemArray[0]) > 0)
             {
